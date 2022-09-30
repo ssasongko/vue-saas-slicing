@@ -1,17 +1,15 @@
 <template>
   <div>
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
+import { RouterView } from 'vue-router'
 
+export default {
+  components: {
+    RouterView
+  }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
