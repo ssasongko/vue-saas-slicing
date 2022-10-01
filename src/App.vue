@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     layout() {
-      return defaultLayout;
+      return this.$route.meta.layout || defaultLayout;
     },
   },
 }
