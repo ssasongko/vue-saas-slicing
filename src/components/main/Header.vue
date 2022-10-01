@@ -39,7 +39,7 @@
           class="flex items-center pr-6 gap-3 relative"
           @click="showContent = !showContent"
         >
-          <p class="text-sm pr-2 hidden lg:block cursor-pointer">Browse Content Liblary</p>
+          <p class="text-sm pr-2 hidden lg:block cursor-pointer text-white">Browse Content Liblary</p>
           <img src="/images/icons/plus.svg" class="cursor-pointer" />
           <MenuContent
             :class="{
@@ -69,12 +69,15 @@
           class="flex items-center relative"
           @click="showProfile = !showProfile"
         >
+          <div class="flex flex-col">
+            <p class="lg:mr-3 text-sm text-white hidden lg:block cursor-pointer">John Doe</p>
+            <span class="text-xs text-white">Free</span>
+          </div>
           <img
             src="/images/default/user-default.png"
             class="w-8 h-8 rounded-full cursor-pointer border bg-gray-100"
             alt=""
           />
-          <p class="lg:ml-3 text-sm hidden lg:block cursor-pointer">John Doe</p>
           <MenuProfile
             :class="{
               slidedown: showProfile,

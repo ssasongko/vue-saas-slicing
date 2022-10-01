@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute z-10 left-0 w-screen top-10 lg:top-14 mt-3 lg:mt-2 bg-white overflow-y-scroll">
+  <div class="absolute z-10 left-0 w-full top-10 lg:top-14 mt-3 lg:mt-2 bg-white overflow-y-scroll">
     <div class="bg-white-primary rounded z-40 shadow-lg">
       <div class="grid grid-cols-1 md:grid md:grid-cols-5 text-black-primary py-6">
         <!-- Menu -->
