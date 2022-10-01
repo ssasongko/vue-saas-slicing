@@ -44,7 +44,7 @@
       <div class="flex justify-between p-2 px-3 items-center">
         <div class="flex items-center gap-2">
           <img v-if="authorImage" class="rounded-full w-10 h-10" :src="authorImage" />
-          <img v-else class="rounded-full w-10 h-10" src="/img/default/user-default.png" />
+          <img v-else class="rounded-full w-10 h-10" src="/images/default/user-default.png" />
           <div class="flex flex-col gap-1">
             <p class="font-light text-spacecadet-100 text-xs">
               {{ authorName }}
