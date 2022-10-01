@@ -1,0 +1,9 @@
+.slideup, .slidedown {
+  height: auto;
+  max-height: 0px;            
+  overflow-y: hidden;
+  transition: max-height .4s ease-in-out;
+}
+.slidedown {            
+  max-height: 100vh;                    
+}

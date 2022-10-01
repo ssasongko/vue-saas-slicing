@@ -1,15 +1,23 @@
 <template>
   <div>
-    <router-view></router-view>
+    <component :is="layout">
+      <router-view :key="$route.fullPath" />
+    </component>
   </div>
 </template>
 
 <script>
-import { RouterView } from 'vue-router'
+import defaultLayout from "@/layouts/default.vue";
 
 export default {
+  name: "App",
   components: {
-    RouterView
-  }
+    defaultLayout
+  },
+  computed: {
+    layout() {
+      return this.$route.meta.layout || defaultLayout;
+    },
+  },
 }
 </script>
