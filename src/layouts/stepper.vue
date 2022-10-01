@@ -1,20 +1,17 @@
 <template>
-  <MainHeader />
-  <div class="px-28 pb-14">
-    <router-view v-slot="{ Component }">
-      <component :is="Component" />
-    </router-view>
+  <div class="bg-[#F8F8F8] h-full w-full pt-1">
+    <MainHeader2 />
+    <div class="px-28 pb-14">
+      <router-view v-slot="{ Component }">
+        <component :is="Component" />
+      </router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import MainHeader from "@/components/main/Header"
-
 export default {
-  name: "DefaultLayout",
-  components: {
-      MainHeader
-  }
+  name: "StepperLayout",
 };
 </script>
 
