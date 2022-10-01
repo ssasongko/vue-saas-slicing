@@ -1,22 +1,22 @@
 <template>
   <div class="flex flex-col gap-y-12 py-5 bg-[#F8F8F8]">
-    <div class="flex justify-between items-center">
-      <div class="flex flex-col justify-center gap-y-1">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+      <div class="flex flex-col justify-center gap-y-1 text-left">
         <h1 class="text-spacecadet-100 text-lg-2">Invite User</h1>
         <span class="text-spacecadet-60">Send invitation by email to join you domain</span>
       </div>
 
       <router-link to="home">
         <button
-          class="text-sm font-medium w-[188px] bg-virindian-100 py-2.5 px-5 text-white flex items-center justify-center gap-x-2 rounded-lg">
-          <span class="">Finish</span>
+          class="text-sm font-medium w-[188px] bg-virindian-100 mt-5 md:mt-0 py-2.5 px-5 text-white flex items-center justify-center gap-x-2 rounded-lg">
+          Finish
         </button>
       </router-link>
     </div>
 
-    <div class="flex flex-row justify-between gap-x-6">
+    <div class="flex flex-col md:flex-row justify-between gap-y-6 md:gap-y-0 gap-x-6">
       <div
-        class="w-1/2 flex flex-col justify-center gap-y-4 bg-white rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.06)] py-3.5 px-6">
+        class="w-full md:w-1/2 flex flex-col justify-center gap-y-4 bg-white rounded-lg shadow-lg py-3.5 px-6">
         <h1 class="text-spacecadet-100 text-sm font-medium">Invite by email</h1>
         <div class="flex flex-col gap-y-1">
           <div>
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div
-        class="w-1/2 flex flex-col gap-y-4 bg-white rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.06)] py-3.5 px-6 h-min-full">
+        class="w-full md:w-1/2 flex flex-col gap-y-4 bg-white rounded-lg shadow-lg py-3.5 px-6 h-min-full">
         <h1 class="text-spacecadet-100 text-sm font-medium">Invite by link</h1>
         <div class="flex flex-col gap-y-1">
           <div>

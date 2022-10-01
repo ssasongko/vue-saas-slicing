@@ -6,7 +6,8 @@ export default [
       name: "content",
       component: () => import("@/views/content/index.vue"),
       meta: {
-        layout: stepperLayout
+        layout: stepperLayout,
+        nextStep: '/invite'
       }
     },
   ];

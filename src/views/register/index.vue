@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <div class="h-full w-full lg:w-1/3 flex items-start md:items-center md:rounded-tl-[5em] bg-white overflow-auto">
+    <div class="h-full w-full lg:w-1/3 flex items-start lg:items-center md:rounded-tl-[5em] bg-white overflow-auto">
       <div class="w-full flex flex-col gap-y-4 p-12">
         <h1 class="text-spacecadet-100 text-[28px] font-medium">Create an account</h1>
         <div class="flex flex-col gap-y-3">

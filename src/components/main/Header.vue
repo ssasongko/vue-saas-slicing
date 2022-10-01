@@ -79,24 +79,30 @@
           class="flex items-center relative"
           @click="showProfile = !showProfile"
         >
-          <img
-            src="/images/default/user-default.png"
-            class="w-8 h-8 rounded-full cursor-pointer border bg-gray-100"
-            alt=""
-          />
-          <p class="lg:ml-3 text-sm hidden lg:block cursor-pointer text-white">
+        <div class="flex flex-col text-right mr-2">
+          <p class="lg:ml-3 text-sm font-bold hidden lg:block cursor-pointer text-white">
             John Doe
           </p>
+          <span class="text-xs text-white">Free</span>
+        </div>
+          <img
+            src="/images/default/user-default.png"
+            class="w-10 rounded-full cursor-pointer border bg-gray-100"
+            alt=""
+          />
           <MenuProfile
             :class="{
               slidedown: showProfile,
               slideup: !showProfile,
             }"
+            :closeModalUpgradePlane="showModalUpgradePlane"
+            @showModal="showModal"
           />
         </div>
       </div>
     </div>
   </header>
+  <MainModalUpgradePlane :isShow="showModalUpgradePlane" :closeModal="closeModal" />
 </template>
 
 <script>
@@ -107,12 +113,19 @@ export default {
       showProfile: false,
       showNotification: false,
       showContent: false,
+      showModalUpgradePlane: false
     };
   },
   methods: {
     onClickOutside(type) {
       this[`show${type}`] = false;
     },
+    showModal(params) {
+      this.showModalUpgradePlane = params;
+    },
+    closeModal() {
+      this.showModalUpgradePlane = !this.showModalUpgradePlane
+    }
   },
 };
 </script>
