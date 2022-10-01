@@ -68,7 +68,8 @@
       <div class="mx-12 py-12 z-20">
         <img src="/images/mdl.png">
         <h2 class="mt-2 font-bold text-spacecadet-100 text-[28px]">With Software as a Service (SaaS) Technology, We
-          provide a learning platform in collaboration with all organization in Indonesia to realize 9 million Indonesia digital
+          provide a learning platform in collaboration with all organization in Indonesia to realize 9 million Indonesia
+          digital
           talents</h2>
       </div>
     </div>
@@ -134,24 +135,26 @@
           <p class="text-sm text-virindian-100">Data User Policy</p>
         </div>
         <div class="flex justify-end">
-          <button
-            class="text-sm font-medium w-[160px] bg-virindian-100 py-2.5 px-5 text-white flex items-center justify-center gap-x-2 rounded-md">
-            <span class="">Agree & Join</span>
-            <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M9.15817 7.90866L5.65817 11.4087C5.5415 11.5253 5.42484 11.5837 5.24984 11.5837C5.07484 11.5837 4.95817 11.5253 4.8415 11.4087C4.60817 11.1753 4.60817 10.8253 4.8415 10.592L7.93317 7.50033L4.8415 4.40866C4.60817 4.17533 4.60817 3.82533 4.8415 3.59199C5.07484 3.35866 5.42484 3.35866 5.65817 3.59199L9.15817 7.09199C9.3915 7.32533 9.3915 7.67533 9.15817 7.90866Z"
-                fill="#1F2855" />
-              <mask id="mask0_5503_9694" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="3" width="6"
-                height="9">
+          <router-link to="content">
+            <button
+              class="text-sm font-medium w-[160px] bg-virindian-100 py-2.5 px-5 text-white flex items-center justify-center gap-x-2 rounded-md">
+              <span class="">Agree & Join</span>
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M9.15817 7.90866L5.65817 11.4087C5.5415 11.5253 5.42484 11.5837 5.24984 11.5837C5.07484 11.5837 4.95817 11.5253 4.8415 11.4087C4.60817 11.1753 4.60817 10.8253 4.8415 10.592L7.93317 7.50033L4.8415 4.40866C4.60817 4.17533 4.60817 3.82533 4.8415 3.59199C5.07484 3.35866 5.42484 3.35866 5.65817 3.59199L9.15817 7.09199C9.3915 7.32533 9.3915 7.67533 9.15817 7.90866Z"
-                  fill="white" />
-              </mask>
-              <g mask="url(#mask0_5503_9694)">
-                <rect y="0.5" width="14" height="14" fill="white" />
-              </g>
-            </svg>
-          </button>
+                  fill="#1F2855" />
+                <mask id="mask0_5503_9694" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="3" width="6"
+                  height="9">
+                  <path
+                    d="M9.15817 7.90866L5.65817 11.4087C5.5415 11.5253 5.42484 11.5837 5.24984 11.5837C5.07484 11.5837 4.95817 11.5253 4.8415 11.4087C4.60817 11.1753 4.60817 10.8253 4.8415 10.592L7.93317 7.50033L4.8415 4.40866C4.60817 4.17533 4.60817 3.82533 4.8415 3.59199C5.07484 3.35866 5.42484 3.35866 5.65817 3.59199L9.15817 7.09199C9.3915 7.32533 9.3915 7.67533 9.15817 7.90866Z"
+                    fill="white" />
+                </mask>
+                <g mask="url(#mask0_5503_9694)">
+                  <rect y="0.5" width="14" height="14" fill="white" />
+                </g>
+              </svg>
+            </button>
+          </router-link>
         </div>
         <div>
           <p class="text-sm">Already have an Account? <span class="text-virindian-100 font-medium text-sm">Login</span>
@@ -183,12 +186,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.background{
+.background {
   background-image: url('/images/background.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .green-circle {
   width: 309px;
   height: 309px;
