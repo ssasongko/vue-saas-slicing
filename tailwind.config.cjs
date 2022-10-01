@@ -5,6 +5,24 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        xs: "12px",
+        sm: "14px",
+        base: ["16px", "21.82px"],
+        "base-1": "18px",
+        "base-2": "20px",
+        lg: "2rem",
+        "lg-2": "24px",
+        "2lg": "1.5rem",
+        xl: ["50px", "48px"],
+        "1xl": "1.5rem",
+        "2xl": "4rem",
+        "3xl": "1.875rem",
+        "4xl": "2.25rem",
+        "5xl": "3rem",
+        "6xl": "4rem",
+        "7xl": "5rem"
+      },
       colors: {
         powerblue: {
           primary: "#DCF0F1",
