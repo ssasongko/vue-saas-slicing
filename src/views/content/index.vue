@@ -51,7 +51,6 @@ export default {
     },
     getSelectedContent(params) {
       this.selectedContent = params;
-      console.log(params);
     },
   },
 };

@@ -93,11 +93,14 @@
               slidedown: showProfile,
               slideup: !showProfile,
             }"
+            :closeModalUpgradePlane="showModalUpgradePlane"
+            @showModal="showModal"
           />
         </div>
       </div>
     </div>
   </header>
+  <MainModalUpgradePlane :isShow="showModalUpgradePlane" :closeModal="closeModal" />
 </template>
 
 <script>
@@ -108,12 +111,19 @@ export default {
       showProfile: false,
       showNotification: false,
       showContent: false,
+      showModalUpgradePlane: false
     };
   },
   methods: {
     onClickOutside(type) {
       this[`show${type}`] = false;
     },
+    showModal(params) {
+      this.showModalUpgradePlane = params;
+    },
+    closeModal() {
+      this.showModalUpgradePlane = !this.showModalUpgradePlane
+    }
   },
 };
 </script>

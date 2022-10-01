@@ -9,6 +9,7 @@
     <div class="px-3">
       <button
         class="bg-[#0093AD] py-1 mb-2 px-1 w-full text-sm rounded text-white"
+        @click="showModalUpgradePlane = !showModalUpgradePlane"
       >
         Upgrade Now
       </button>
@@ -22,9 +23,28 @@
   </div>
 </template>
 <script>
-import Modal from '../../fragments/home/Modal.vue';
 export default {
   name: 'MenuProfile',
-  components: { Modal },
+  props: {
+    closeModalUpgradePlane: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    }
+  },
+  data() {
+    return {
+      showModalUpgradePlane: false
+    }
+  },
+  watch: {
+    showModalUpgradePlane: function(params) {
+      this.$emit('showModal', params)
+    },
+    closeModalUpgradePlane: function(newVal) {
+      this.showModalUpgradePlane = newVal
+    }
+  }
 };
 </script>
