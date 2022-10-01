@@ -23,7 +23,7 @@
           </g>
         </svg>
       </div>
-      <router-link to="content">
+      <router-link to="invite">
         <button
           class="text-sm font-medium w-[188px] bg-virindian-100 py-2.5 px-5 text-white flex items-center justify-center gap-x-2 rounded-lg">
           <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
