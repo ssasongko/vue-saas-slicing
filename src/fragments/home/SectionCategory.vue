@@ -4,7 +4,7 @@
   <section>
     <div class="flex justify-between items-center">
       <h2 class="text-[24px] font-medium">Category</h2>
-      <div class="flex gap-2">
+      <div class="flex gap-2 text-[#DCF0F1]">
         <div @click="handleSlidePrev">
           <mdicon class="cursor-pointer" name="chevron-left-circle" />
         </div>

@@ -2,9 +2,9 @@
   <div class="px-4 pt-10 bg-[#F8F8F8]">
     <SectionCarousel class="mb-11" />
     <SectionMenu class="mb-11" />
-    <SectionContentPartners class="mb-11" />
+    <SectionContentPartners :title="title[0]" class="mb-11" />
     <SectionCategory class="mb-11" />
-    <SectionContentPartners class="mb-11" />
+    <SectionContentPartners :title="title[1]" class="mb-11" />
     <SectionFooter />
   </div>
 </template>
@@ -27,6 +27,7 @@ export default {
   },
   data() {
     return {
+      title: ['Browse Library', 'Newest Content'],
       isShow: false,
     };
   },

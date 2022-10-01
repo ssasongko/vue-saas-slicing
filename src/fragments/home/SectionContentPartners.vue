@@ -4,7 +4,7 @@
   <section class="rounded-md p-6 shadow-md bg-white">
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-base font-medium sm:text-lg-2 md:text-lg-2">
-        Content Partners
+        {{ title }}
       </h2>
       <router-link
         class="flex items-center opacity-70 duration-200 ease-in-out hover:opacity-100"
@@ -52,7 +52,9 @@ import CardContentPartners from '../../components/card/CardContentPartners.vue';
 export default {
   name: 'SectionContentPartners',
   components: { CardContentPartners },
-
+  props: {
+    title: String,
+  },
   data() {
     return {
       freeColor: '#0093AD',

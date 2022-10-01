@@ -9,8 +9,8 @@ const router = createRouter({
       name: 'profile',
       component: () => import('@/views/register/index.vue'),
       meta: {
-        layout: IndexLayout
-      }
+        layout: IndexLayout,
+      },
     },
     {
       path: '/home',
