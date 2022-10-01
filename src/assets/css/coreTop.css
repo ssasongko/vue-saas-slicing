@@ -4,7 +4,7 @@
 @tailwind components;
 
 :root {
-  font-family: "Montserrat";
+  font-family: "Montserrat", sans-serif;
 
   color: rgba(0, 0, 0, 0.87);
   background-color: #242424;
