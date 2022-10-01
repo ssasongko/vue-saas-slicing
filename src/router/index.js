@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'profile',
-      component: () => import('../views/register/index.vue'),
+      component: () => import('@/views/register/index.vue'),
     },
   ]
 });
