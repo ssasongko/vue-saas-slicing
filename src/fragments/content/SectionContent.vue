@@ -11,7 +11,9 @@
           :author-image="'/images/default/user-default.png'"
           :author-name="'Microsoft'"
           :author-subtitle="`${data} Registered`"
+          :isChecked="selectedContent"
           :is-column="true"
+          @selected="onSelectedContent(data)"
         >
           <p class="text-[#a6a9bc] ml-2 text-xs !m-0">100 Views</p>
           <template #icon>
@@ -46,7 +48,7 @@
         </CardContent>
       </div>
     </section>
-    
+
     <Pagination
       :page="1"
       :per-page="10"
@@ -60,5 +62,38 @@
 <script>
 export default {
   name: "SectionContent",
+  props: {
+    clearSelected: {
+      type: Array,
+      default() {
+        return ""
+      }
+    }
+  },
+  data() {
+    return{
+      selectedContent: []
+    }
+  },
+  watch: {
+    clearSelected: function(newVal) {
+      this.selectedContent = newVal;
+    },
+    selectedContent: function() {
+      this.$emit('selected', this.selectedContent)
+    },
+  },
+  methods: {
+    onSelectedContent(id){
+      if(!this.selectedContent.includes(id)){
+        this.selectedContent = [...this.selectedContent, id]
+      }else{
+        const index = this.selectedContent.indexOf(id)
+        if(index > -1){
+          this.selectedContent.splice(index, 1)
+        }
+      }
+    }
+  }
 };
 </script>

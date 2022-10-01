@@ -17,14 +17,14 @@
       <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
         <div class="flex justify-center items-center h-full w-full">
           <a :href="link" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a>
-          <button class="bg-white text-black text-sm px-5 py-2 rounded ml-4">{{ isChecked ? 'Remove' : 'Select' }}</button>
+          <button class="bg-white text-black text-sm px-5 py-2 rounded ml-4" @click="this.$emit('selected')">{{ isChecked.includes(id) ? 'Remove' : 'Select' }}</button>
         </div>
       </div>
     </div>
     <div class="absolute w-full top-4">
       <div class="flex justify-between">
         <Badge class="ml-5">Free</Badge>
-        <img :src="isChecked ? '/images/icons/checked.svg' : '/images/icons/uncheked.svg'" class="mr-5" alt="select-icon" />
+        <img :src="isChecked.includes(id) ? '/images/icons/checked.svg' : '/images/icons/uncheked.svg'" class="mr-5" alt="select-icon" />
       </div>
     </div>
     <div
@@ -106,9 +106,9 @@ export default {
       },
     },
     isChecked: {
-      type: Boolean,
+      type: [Array],
       default() {
-        return false;
+        return "";
       },
     },
     authorImage: {
@@ -124,6 +124,11 @@ export default {
       },
     },
   },
+  data(){
+    return {
+      selectedContent: []
+    }
+  }
 };
 </script>
 
