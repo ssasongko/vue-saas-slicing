@@ -15,15 +15,18 @@
           'h-auto w-1/3 rounded-l-md': !isColumn,
         }"
       />
-      <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] z-10">
+      <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
         <div class="flex justify-center items-center h-full w-full">
-          <button class="border outline-white text-white text-sm px-5 py-2 rounded">Preview</button>
-          <button class="bg-white text-black text-sm px-5 py-2 rounded ml-4">Select</button>
+          <a :href="link" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a>
+          <button class="bg-white text-black text-sm px-5 py-2 rounded ml-4">{{ isChecked ? 'Remove' : 'Select' }}</button>
         </div>
       </div>
     </div>
-    <div class="absolute top-4 left-4">
-      <slot name="badge"></slot>
+    <div class="absolute w-full top-4">
+      <div class="flex justify-between">
+        <Badge class="ml-5">Free</Badge>
+        <img :src="isChecked ? '/images/icons/checked.svg' : '/images/icons/uncheked.svg'" class="mr-5" alt="select-icon" />
+      </div>
     </div>
     <div
       class="flex flex-col gap-4 justify-between"
@@ -44,7 +47,7 @@
       <div class="flex justify-between p-2 px-3 items-center">
         <div class="flex items-center gap-2">
           <img v-if="authorImage" class="rounded-full w-10 h-10" :src="authorImage" />
-          <img v-else class="rounded-full w-10 h-10" src="/img/default/user-default.png" />
+          <img v-else class="rounded-full w-10 h-10" src="/images/default/user-default.png" />
           <div class="flex flex-col gap-1">
             <p class="font-light text-spacecadet-100 text-xs">
               {{ authorName }}
@@ -104,10 +107,10 @@ export default {
         return "-";
       },
     },
-    view: {
-      type: String,
+    isChecked: {
+      type: Boolean,
       default() {
-        return "";
+        return false;
       },
     },
     authorImage: {
@@ -127,13 +130,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card-content{
-  & .backdrop-banner{
+.card-content {
+  & .backdrop-banner {
     visibility: hidden;
     opacity: 0;
-    transition: .3s;
+    transition: 0.3s;
   }
-  &:hover .backdrop-banner{
+  &:hover .backdrop-banner {
     opacity: 1;
     visibility: visible;
   }

@@ -12,11 +12,6 @@
         :author-subtitle="`${data} Registered`"
         :is-column="true"
       >
-        <template #badge>
-          <div class="flex gap-x-3">
-            <Badge>Free</Badge>
-          </div>
-        </template>
         <p class="text-[#a6a9bc] ml-2 text-xs !m-0">100 Views</p>
         <template #icon>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
