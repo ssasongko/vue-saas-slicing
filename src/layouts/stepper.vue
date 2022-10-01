@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#F8F8F8] h-full w-full pt-1">
+  <div class="bg-[#F8F8F8] pt-1 min-h-screen w-full">
     <MainHeader2 />
     <div class="px-28 pb-14">
       <router-view v-slot="{ Component }">
