@@ -40,9 +40,11 @@
     </div>
     <div class="flex items-center">
       <div class="flex items-center">
-        <p class="text-sm pr-2 hidden lg:block cursor-pointer text-white">
-          Browse Content Liblary
-        </p>
+        <router-link to="browse-content">
+          <p class="text-sm pr-2 hidden lg:block cursor-pointer text-white">
+            Browse Content Liblary
+          </p>
+        </router-link>
         <div
           v-click-outside="() => onClickOutside('Content')"
           class="flex items-center pr-6 gap-3 relative"
