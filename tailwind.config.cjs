@@ -43,6 +43,7 @@ module.exports = {
         spacecadet: {
           primary: "#A6A9BC",
           40: "#A6A9BC",
+          60: "#797F99",
           100: "#1F2855"
         },
         rossocorsa: {
