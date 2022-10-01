@@ -1,5 +1,4 @@
 <template>
-  <!-- <a :href="link"> -->
   <div
     class="card-content relative flex h-full bg-white shadow-lg rounded-md"
     :class="{
@@ -59,7 +58,6 @@
       </div>
     </div>
   </div>
-  <!-- </a> -->
 </template>
 
 <script>
