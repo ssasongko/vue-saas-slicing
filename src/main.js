@@ -1,11 +1,7 @@
-import { createApp } from 'vue'
-import router from './router'
+// core vue
+import vueInit from '@/core/initiate.js'
 
-import './style.css'
-import App from './App.vue'
+// Load global styles
+import '@/core/global-styles.js'
 
-const app = createApp(App)
-
-app.use(router)
-
-app.mount('#app')
+vueInit.mount('#app')
