@@ -1,5 +1,7 @@
 <template>
-  <header class="flex justify-between py-2.5 px-6 shadow-sm bg-green-500 sticky top-0 z-50">
+  <header
+    class="flex justify-between py-2.5 px-6 shadow-sm bg-red-500 sticky top-0 z-50"
+  >
     <div class="flex items-center">
       <div class="cursor-pointer hidden lg:block">
         <LogoHeader />
@@ -15,11 +17,15 @@
         />
       </div>
       <div class="lg:ml-6">
-        <button class="cursor-pointer text-sm text-white hidden md:block">Knowledge Feed</button>
+        <button class="cursor-pointer text-sm text-white hidden md:block">
+          Knowledge Feed
+        </button>
       </div>
       <div class="lg:ml-8 ml-4">
         <div class="relative">
-          <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <div
+            class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+          >
             <MagnifierIcon />
           </div>
           <input
@@ -34,12 +40,14 @@
     </div>
     <div class="flex items-center">
       <div class="flex items-center">
+        <p class="text-sm pr-2 hidden lg:block cursor-pointer text-white">
+          Browse Content Liblary
+        </p>
         <div
           v-click-outside="() => onClickOutside('Content')"
           class="flex items-center pr-6 gap-3 relative"
           @click="showContent = !showContent"
         >
-          <p class="text-sm pr-2 hidden lg:block cursor-pointer text-white">Browse Content Liblary</p>
           <img src="/images/icons/plus.svg" class="cursor-pointer" />
           <MenuContent
             :class="{
@@ -69,15 +77,14 @@
           class="flex items-center relative"
           @click="showProfile = !showProfile"
         >
-          <div class="flex flex-col">
-            <p class="lg:mr-3 text-sm text-white hidden lg:block cursor-pointer">John Doe</p>
-            <span class="text-xs text-white">Free</span>
-          </div>
           <img
             src="/images/default/user-default.png"
             class="w-8 h-8 rounded-full cursor-pointer border bg-gray-100"
             alt=""
           />
+          <p class="lg:ml-3 text-sm hidden lg:block cursor-pointer text-white">
+            John Doe
+          </p>
           <MenuProfile
             :class="{
               slidedown: showProfile,

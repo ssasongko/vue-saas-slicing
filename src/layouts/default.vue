@@ -1,6 +1,6 @@
 <template>
   <MainHeader />
-  <div class="px-28 pb-14">
+  <div class="pb-14">
     <router-view v-slot="{ Component }">
       <component :is="Component" />
     </router-view>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import MainHeader from "@/components/main/Header"
+import MainHeader from '@/components/main/Header';
 
 export default {
-  name: "DefaultLayout",
+  name: 'DefaultLayout',
   components: {
-      MainHeader
-  }
+    MainHeader,
+  },
 };
 </script>
