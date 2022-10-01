@@ -4,7 +4,7 @@
     <div class="flex flex-col gap-4">
       <h1 class="font-bold text-sm text-spacecadet-100">Skill Level</h1>
       <div v-for="(el, i) in dataSkill" :key="i" class="flex items-center gap-2.5">
-        <input type="radio" :value="el" class="border-[1.5px] border-[#EFEFEF" />
+        <input type="radio" :value="el" name="skill" class="border-[1.5px] border-[#EFEFEF" />
         <p class="font-medium text-sm text-spacecadet-100">
           {{ el[0].toUpperCase() + el.slice(1) }}
         </p>
