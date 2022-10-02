@@ -42,7 +42,7 @@
       <div class="flex items-center">
         <router-link to="browse-content">
           <p class="text-sm pr-2 hidden lg:block cursor-pointer text-white">
-            Browse Content Liblary
+            Browse Content Library
           </p>
         </router-link>
         <div
