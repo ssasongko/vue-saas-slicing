@@ -21,7 +21,7 @@
             <input ref="fileUpload" type="file" hidden />
             <button class="flex items-center bg-virindian-100 text-white px-4 py-2 rounded-md" @click="chooseFile">
               <img src="/images/icons/download.svg" class="mr-2" alt="" />
-              Import Content
+              Import Course
             </button>
           </span>
         </div>
