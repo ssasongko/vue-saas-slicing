@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Content</title>
+  <style>
+    .carousel-open:checked+.carousel-item {
+      position: static;
+      opacity: 100;
+    }
+
+    .carousel-item {
+      -webkit-transition: opacity 0.6s ease-out;
+      transition: opacity 0.6s ease-out;
+    }
+
+    #carousel-1:checked~.control-1,
+    #carousel-2:checked~.control-2,
+    #carousel-3:checked~.control-3 {
+      display: block;
+    }
+
+    .carousel-indicators {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      bottom: 2%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 10;
+    }
+
+    #carousel-1:checked~.control-1~.carousel-indicators li:nth-child(1) .carousel-bullet,
+    #carousel-2:checked~.control-2~.carousel-indicators li:nth-child(2) .carousel-bullet,
+    #carousel-3:checked~.control-3~.carousel-indicators li:nth-child(3) .carousel-bullet {
+      color: #2b6cb0;
+      /*Set to match the Tailwind colour you want the active one to be */
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="bg-[#F8F8F8] min-h-screen w-full">
+    <header class="flex justify-between py-2.5 px-6 shadow-sm bg-red-500 sticky top-0 z-50">
+      <div class="flex items-center">
+        <div class="cursor-pointer hidden lg:block">
+          <img src="images/logo/digi-white.svg" />
+        </div>
+        <div class="cursor-pointer lg:ml-8">
+          <img src="images/icons/grid-white.svg" />
+        </div>
+        <div class="lg:ml-6">
+          <button class="cursor-pointer text-sm text-white hidden md:block">
+            Knowledge Feed
+          </button>
+        </div>
+        <div class="lg:ml-8 ml-4">
+          <div class="relative">
+            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+              <MagnifierIcon />
+            </div>
+            <input id="default-search" type="search"
+              class="block rounded-full py-1.5 pl-10 lg:w-[30rem] text-sm focus:outline-none bg-red-200 text-gray-900"
+              placeholder="Search content or author..." required />
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <div class="flex items-center">
+          <p class="text-sm pr-2 hidden lg:block cursor-pointer text-white">
+            Browse Content Library
+          </p>
+          <div v-click-outside="() => onClickOutside('Content')" class="flex items-center pr-6 gap-3 relative"
+            @click="showContent = !showContent">
+            <img src="images/icons/plus.svg" class="cursor-pointer" />
+            <MenuContent :class="{
+              slidedown: showContent,
+              slideup: !showContent,
+            }" />
+          </div>
+          <div class="block pr-6 cursor-pointer">
+            <img src="images/icons/cart.svg" />
+          </div>
+          <div v-click-outside="() => onClickOutside('Notification')" class="pr-6 block cursor-pointer relative"
+            @click="showNotification = !showNotification">
+            <NotificationIcon :value="10" />
+            <MenuNotification :class="{
+              slidedown: showNotification,
+              slideup: !showNotification,
+            }" />
+          </div>
+          <div v-click-outside="() => onClickOutside('Profile')" class="flex items-center relative"
+            @click="showProfile = !showProfile">
+            <div class="flex flex-col text-right mr-2">
+              <p class="lg:ml-3 text-sm font-bold hidden lg:block cursor-pointer text-white">
+                John Doe
+              </p>
+              <span class="text-xs text-white">Free</span>
+            </div>
+            <img src="images/default/user-default.png" class="w-10 rounded-full cursor-pointer border bg-gray-100"
+              alt="" />
+            <MenuProfile :class="{
+              slidedown: showProfile,
+              slideup: !showProfile,
+            }" :closeModalUpgradePlane="showModalUpgradePlane" @showModal="showModal" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="px-4 pt-10 bg-[#F8F8F8]">
+      <div class="flex flex-col gap-y-8">
+        <div class="carousel relative shadow-2xl bg-white">
+          <div class="carousel-inner relative overflow-hidden w-full">
+            <!--Slide 1-->
+            <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
+              checked="checked">
+            <div class="carousel-item absolute opacity-0" style="height:50vh;">
+              <div class="block h-full w-full bg-indigo-500 text-white text-5xl text-center">Slide 1</div>
+            </div>
+            <label for="carousel-3"
+              class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-2"
+              class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!--Slide 2-->
+            <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+            <div class="carousel-item absolute opacity-0" style="height:50vh;">
+              <div class="block h-full w-full bg-orange-500 text-white text-5xl text-center">Slide 2</div>
+            </div>
+            <label for="carousel-1"
+              class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-3"
+              class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!--Slide 3-->
+            <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+            <div class="carousel-item absolute opacity-0" style="height:50vh;">
+              <div class="block h-full w-full bg-green-500 text-white text-5xl text-center">Slide 3</div>
+            </div>
+            <label for="carousel-2"
+              class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+            <label for="carousel-1"
+              class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+
+            <!-- Add additional indicators for each slide-->
+            <ol class="carousel-indicators">
+              <li class="inline-block mr-3">
+                <label for="carousel-1"
+                  class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+              </li>
+              <li class="inline-block mr-3">
+                <label for="carousel-2"
+                  class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+              </li>
+              <li class="inline-block mr-3">
+                <label for="carousel-3"
+                  class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+              </li>
+            </ol>
+
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-md shadow-md">
+          <div class="lg:grid lg:grid-cols-7 lg:gap-6 grid grid-cols-2 gap-4">
+            <div>
+              <a href="/videos" class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img
+                  class="w-8 h-8" src="images/icons/youtube-red.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Videos</p>
+              </a>
+            </div>
+            <div>
+              <a href="/podcasts"
+                class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img class="w-8 h-8"
+                  src="images/icons/podcast.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Podcast</p>
+              </a>
+            </div>
+            <div>
+              <a href="/webinar" class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img
+                  class="w-8 h-8" src="images/icons/video.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Webinar</p>
+              </a>
+            </div>
+            <div>
+              <a href="/articles"
+                class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img class="w-8 h-8"
+                  src="images/icons/article.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Article</p>
+              </a>
+            </div>
+            <div>
+              <a href="/courses" class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img
+                  class="w-8 h-8" src="images/icons/course.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Course</p>
+              </a>
+            </div>
+            <div>
+              <a href="/videos" class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img
+                  class="w-8 h-8" src="images/icons/karya_tulis.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Karya Tulis</p>
+              </a>
+            </div>
+            <div>
+              <a href="/journey" class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img
+                  class="w-8 h-8" src="images/icons/journey.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Journey</p>
+              </a>
+            </div>
+            <div>
+              <a href="/programs"
+                class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img class="w-8 h-8"
+                  src="images/icons/program.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Program</p>
+              </a>
+            </div>
+            <div>
+              <a href="/survei" class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img
+                  class="w-8 h-8" src="images/icons/clipboard.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Survei</p>
+              </a>
+            </div>
+            <div>
+              <a href="/case-study"
+                class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img class="w-8 h-8"
+                  src="images/icons/case_study.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Case Study</p>
+              </a>
+            </div>
+            <div>
+              <a href="/digilib" class="flex items-center cursor-pointer hover:bg-[#DCF0F1] py-2.5 px-3 rounded-md"><img
+                  class="w-8 h-8" src="images/icons/ebook.svg" alt="">
+                <p class="text-[#1F2855] font-semibold text-sm pl-[10px]">Digilib</p>
+              </a>
+            </div>
+          </div>
+          <hr class="mt-6" />
+          <div class="mt-4">
+            <h2 class="text-[24px] font-medium text-[#D2000F]">Insight</h2>
+            <div class="lg:grid lg:grid-cols-4 mt-6">
+              <div class="font-medium text-[18px] text-[#1F2855] lg:border-r lg:mr-1.5">
+                <h4 class="#1F2855 font-medium">Ali's keep spirit</h4>
+                <div class="grid grid-cols-2 gap-y-3 mt-7 text-green-400">
+                  <div class="flex items-center"><img src="images/icons/ceklis.svg" alt="">
+                    <div class="ml-6">
+                      <h3 class="text-[#457B9D] font-medium text-base">20</h3>
+                      <p class="text-xs font-semibold text-black">Complete</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center"><img src="images/icons/hour.svg" alt="">
+                    <div class="ml-6">
+                      <h3 class="text-[#457B9D] font-medium text-base">96</h3>
+                      <p class="text-xs font-semibold text-black">Hours</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center"><img src="images/icons/ongoing.svg" alt="">
+                    <div class="ml-6">
+                      <h3 class="text-[#457B9D] font-medium text-base">7</h3>
+                      <p class="text-xs font-semibold text-black">Ongoing</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-span-3 mt-8 lg:mt-0">
+                <div class="flex lg:justify-between items-center text-green-400">
+                  <h4 class="font-medium text-[18px] text-[#1F2855]">My Learning</h4>
+                  <a aria-current="page" href="/home" class="router-link-active router-link-exact-active">
+                    <div class="flex items-center">
+                      <h6 class="font-medium lg:mr-3 pt-0.5 text-sm text-[#0093AD]"> Continue my learning </h6><span
+                        role="img" class="text-[#0093AD] mdi mdi-chevron-right"><svg fill="currentColor" width="24"
+                          height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                        </svg></span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="rounded-md p-6 shadow-md bg-white">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex gap-x-3 items-center">
+              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M21.8 5.99023C21.9 5.99023 21.9 6.09023 21.9 6.09023C22 6.29023 22 6.39023 22 6.49023V20.4902C22 22.1902 20.7 23.4902 19 23.4902H5C3.3 23.4902 2 22.1902 2 20.4902V6.49023V6.09023C2.1 6.09023 2.1 5.99023 2.1 5.99023C2.2 5.99023 2.2 5.89023 2.2 5.89023L5.2 1.89023C5.4 1.59023 5.7 1.49023 6 1.49023H18C18.3 1.49023 18.6 1.59023 18.7 1.89023L21.7 5.89023C21.8 5.89023 21.8 5.99023 21.8 5.99023ZM17.5 3.49023H6.5L5 5.49023H19L17.5 3.49023ZM20 20.4902C20 21.0902 19.6 21.4902 19 21.4902H5C4.4 21.4902 4 21.0902 4 20.4902V7.49023H20V20.4902ZM12 15.4902C14.8 15.4902 17 13.2902 17 10.4902C17 9.89023 16.6 9.49023 16 9.49023C15.4 9.49023 15 9.89023 15 10.4902C15 12.1902 13.7 13.4902 12 13.4902C10.3 13.4902 9 12.1902 9 10.4902C9 9.89023 8.6 9.49023 8 9.49023C7.4 9.49023 7 9.89023 7 10.4902C7 13.2902 9.2 15.4902 12 15.4902Z"
+                  fill="black" />
+                <mask id="mask0_5647_131480" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="1" width="20"
+                  height="23">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M21.8 5.99023C21.9 5.99023 21.9 6.09023 21.9 6.09023C22 6.29023 22 6.39023 22 6.49023V20.4902C22 22.1902 20.7 23.4902 19 23.4902H5C3.3 23.4902 2 22.1902 2 20.4902V6.49023V6.09023C2.1 6.09023 2.1 5.99023 2.1 5.99023C2.2 5.99023 2.2 5.89023 2.2 5.89023L5.2 1.89023C5.4 1.59023 5.7 1.49023 6 1.49023H18C18.3 1.49023 18.6 1.59023 18.7 1.89023L21.7 5.89023C21.8 5.89023 21.8 5.99023 21.8 5.99023ZM17.5 3.49023H6.5L5 5.49023H19L17.5 3.49023ZM20 20.4902C20 21.0902 19.6 21.4902 19 21.4902H5C4.4 21.4902 4 21.0902 4 20.4902V7.49023H20V20.4902ZM12 15.4902C14.8 15.4902 17 13.2902 17 10.4902C17 9.89023 16.6 9.49023 16 9.49023C15.4 9.49023 15 9.89023 15 10.4902C15 12.1902 13.7 13.4902 12 13.4902C10.3 13.4902 9 12.1902 9 10.4902C9 9.89023 8.6 9.49023 8 9.49023C7.4 9.49023 7 9.89023 7 10.4902C7 13.2902 9.2 15.4902 12 15.4902Z"
+                    fill="white" />
+                </mask>
+                <g mask="url(#mask0_5647_131480)">
+                  <rect y="0.490234" width="24" height="24" fill="#D2000F" />
+                </g>
+              </svg>
+
+              <h2 class="font-medium text-[24px] text-[#D2000F]">Browse Library</h2>
+            </div>
+            <a href="/other-course" class="flex items-center opacity-70 duration-200 ease-in-out hover:opacity-100">
+              <p class="text-md md:text-sm sm:text-base-2 font-bold lg:pr-3 pt-0.5 text-[#0093AD]"> View All </p>
+              <span role="img" class="text-[#0093AD] mdi mdi-chevron-right"><svg fill="currentColor" width="24"
+                  height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                </svg></span>
+            </a>
+          </div>
+          <div class="mt-4">
+            <div class="grid lg:grid-cols-5 sm:grid-cols-2 gap-2">
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#D2000F] text-white">paid</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Advanced]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/microsoft.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">Microsoft</p>
+                        <p class="text-sm text-[#A6A9BC]">240x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#0093AD] text-white">free</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Advanced]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/huawei.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">Huawei</p>
+                        <p class="text-sm text-[#A6A9BC]">140x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#0093AD] text-white">free</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Intermediete]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/huawei.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">ITB</p>
+                        <p class="text-sm text-[#A6A9BC]">200x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#D2000F] text-white">paid</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Beginner]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/huawei.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">Microsoft</p>
+                        <p class="text-sm text-[#A6A9BC]">40x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#0093AD] text-white">free</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Beginer]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/huawei.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">ITB</p>
+                        <p class="text-sm text-[#A6A9BC]">530x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="">
+          <div class="flex justify-between items-center">
+            <h2 class="text-[24px] font-medium text-[#D2000F]">Category</h2>
+            <div class="flex gap-2 text-[#DCF0F1]">
+              <div>
+                <span role="img" class="cursor-pointer mdi mdi-chevron-left-circle">
+                  <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!---->
+                    <path
+                      d="M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M15.4,16.6L10.8,12L15.4,7.4L14,6L8,12L14,18L15.4,16.6Z">
+                    </path>
+                  </svg>
+                </span>
+              </div>
+              <div>
+                <span role="img" class="cursor-pointer mdi mdi-chevron-right-circle">
+                  <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!---->
+                    <path
+                      d="M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M10,18L16,12L10,6L8.6,7.4L13.2,12L8.6,16.6L10,18Z">
+                    </path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="grid grid-cols-6 gap-5">
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Digital Strategy,<br>
+                Transformasion & Investmnet
+              </div>
+              <div class="flex items-center text-white bg-[#0093AD] shadow-md rounded-md py-3 px-5 font-bold">
+                Digital Network & Connectivity
+              </div>
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Digital Technology, Data & Platform
+              </div>
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Digital Security & Business Sustainability
+              </div>
+              <div
+                class="col-span-2 flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Governance, Risk & Compliance
+              </div>
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Leading People & Organization
+              </div>
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Digital Content & Service
+              </div>
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Corporate Enabler
+              </div>
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Leading Business
+              </div>
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Health
+              </div>
+              <div class="flex items-center text-[#1F2855] shadow-md bg-white rounded-md py-3 px-5 font-bold">
+                Investmnet
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="rounded-md p-6 shadow-md bg-white">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex gap-x-3 items-center">
+              <h2 class="font-medium text-[24px] text-[#D2000F]">Newest Content</h2>
+            </div>
+            <a href="/other-course" class="flex items-center opacity-70 duration-200 ease-in-out hover:opacity-100">
+              <p class="text-md md:text-sm sm:text-base-2 font-bold lg:pr-3 pt-0.5 text-[#0093AD]"> View All </p>
+              <span role="img" class="text-[#0093AD] mdi mdi-chevron-right"><svg fill="currentColor" width="24"
+                  height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                </svg></span>
+            </a>
+          </div>
+          <div class="mt-4">
+            <div class="grid lg:grid-cols-5 sm:grid-cols-2 gap-2">
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#D2000F] text-white">paid</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Advanced]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/microsoft.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">Microsoft</p>
+                        <p class="text-sm text-[#A6A9BC]">240x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#0093AD] text-white">free</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Advanced]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/huawei.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">Huawei</p>
+                        <p class="text-sm text-[#A6A9BC]">140x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#0093AD] text-white">free</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Intermediete]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/huawei.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">ITB</p>
+                        <p class="text-sm text-[#A6A9BC]">200x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#D2000F] text-white">paid</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Beginner]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/huawei.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">Microsoft</p>
+                        <p class="text-sm text-[#A6A9BC]">40x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card rounded-lg overflow-hidden my-3 bg-white hover:cursor-pointer pb-2">
+                  <a href=""
+                    class="text-white-primary py-1 px-3 text-sm ml-2 mt-2 rounded-3xl z-0 absolute bg-[#0093AD] text-white">free</a><img
+                    src="images/home/Image.png" class="w-full object-cover h-44">
+                  <div class="mt-4 lg:px-2"><a href=""></a>
+                    <h3 class="text-base font-bold text-[#457B9D]">FWA &amp; OKR “New Ways of Working
+                      in
+                      Digital Era</h3>
+                    <p class="mt-2 text-sm text-[#8FAFC4]">[Beginer]</p>
+                  </div>
+                  <div class="flex justify-between items-center mt-5 pl-2 pr-2">
+                    <div class="flex items-center"><img src="images/home/huawei.png" class="rounded-full">
+                      <div class="ml-2">
+                        <p class="text-sm font-bold text-[#1F2855]">ITB</p>
+                        <p class="text-sm text-[#A6A9BC]">530x views</p>
+                      </div>
+                    </div><img src="images/home/youtube.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <hr class="mb-8 mt-2 text-[#B9B9C3]">
+          <div class="lg:flex justify-between text-[#797F99] mx-4 pb-5">
+            <div>
+              <h3 class="font-[21px] text-[#457B9D] font-medium mb-4">Categories</h3>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Digital Strategy, Transformasion &amp; Investmnet
+                </li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Digital Network &amp; Connectivity</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Digital Technology, Data &amp; Platform</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Digital Security &amp; Business Sustainability</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Governance, Risk &amp; Compliance</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Leading People &amp; Organization</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Data Content &amp; Service</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Corporate Enabler</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Leading Business</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Health</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Investment</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-[21px] text-[#457B9D] font-medium mb-4">Products</h3>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">video</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">podcast</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">webinar</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">article</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">course</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">pathway</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">class</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">digilib</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-[21px] text-[#457B9D] font-medium mb-4">Support</h3>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">FAQ</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Term &amp; Conditions</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Privacy Policy</li>
+              </ul>
+              <h3 class="font-[21px] text-[#457B9D] font-medium mb-4 mt-4">Our Company</h3>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">About Us</li>
+              </ul>
+              <ul>
+                <li class="text-sm py-1 text-[#797F99] font-medium">Contact Us</li>
+              </ul>
+            </div>
+            <div class="flex flex-col gap-5">
+              <img src="images/logo/logo-footer.svg" alt="">
+              <h4 class="text-[18px] text-[#457B9D]"> myDigiLearn makes <br> learning matter </h4>
+              <p class="text-[#457B9D]">Follow Us</p>
+              <div class="flex gap-2">
+                <div>
+                  <a href="https://www.instagram.com/telkomdigilearn/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/icons/instagram-fill.svg" alt=""></a>
+                </div>
+                <div>
+                  <a href="https://www.facebook.com/telkomcorpu/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/icons/facebook-box-fill.svg" alt=""></a>
+                </div>
+                <div>
+                  <a href="https://www.linkedin.com/company/mydigilearn-indonesia/" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="images/icons/linkedin-box-fill.svg" alt=""></a>
+                </div>
+                <div>
+                  <a href="https://www.youtube.com/channel/UCOhvQBC8KyvfLp5GBd05i7A" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="images/icons/youtube-fill.svg" alt=""></a>
+                </div>
+              </div>
+              <p class="text-xs font-normal text-[#457B9D]"> © 2022 myDigiLearn <br> All Rights Reserved. </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+
+</html>
