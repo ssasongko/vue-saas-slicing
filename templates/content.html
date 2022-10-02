@@ -1,44 +1,673 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      .background {
-        background-image: url("images/background.png");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
 
-      .green-circle {
-        width: 309px;
-        height: 309px;
-        background: linear-gradient(143.48deg, #0093ad 24.31%, #1e2855 77.43%);
-        box-shadow: 10px 17px 91px 28px rgba(0, 0, 0, 0.1),
-          inset 0px 0px 100px rgba(0, 0, 0, 0.25),
-          inset 0px 4px 166px rgba(0, 147, 173, 0.25),
-          inset 0px 4px 16px rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(12px);
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Content</title>
+</head>
 
-  <body>
-    <div class="bg-[#F8F8F8] pt-1 min-h-screen w-full">
-      <div class="bg-white shadow-lg m-6 rounded-l-lg z-50">
-        <div class="flex justify-between items-center mx-6 md:mx-24 py-3">
-          <img src="images/mdl.png" class="w-[150px] md:w-auto" alt="logo" />
-          <a href="#" class="text-[#797F99]">Skip to next step ></a>
-        </div>
-      </div>
-      <div class="px-6 md:px-28 md:pb-14">
-        <router-view v-slot="{ Component }">
-          <component :is="Component" />
-        </router-view>
+<body>
+  <div class="bg-[#F8F8F8] pt-1 min-h-screen w-full">
+    <div class="bg-white shadow-lg m-6 rounded-l-lg z-50">
+      <div class="flex justify-between items-center mx-6 md:mx-24 py-3">
+        <img src="images/mdl.png" class="w-[150px] md:w-auto" alt="logo" />
+        <a href="#" class="text-[#797F99]">Skip to next step ></a>
       </div>
     </div>
-  </body>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <div class="px-6 md:px-28 md:pb-14">
+      <div class="flex flex-col my-10">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <span>
+            <h1 class="text-[#1F2855] text-[28px] font-medium">
+              Choose the content you like
+            </h1>
+            <p class="text-[#797F99] text-sm">
+              Please choose some content you need and invite your partner to
+              learn
+            </p>
+          </span>
+          <div class="flex gap-x-4 mt-5 md:mt-0">
+            <div class="flex items-center w-fit rounded-full px-3 py-2 text-xs md:text-base" style="background: rgb(220, 240, 241); color: rgb(0, 147, 173);">1 Free Course Selected <span class="ml-3 cursor-pointer">x</span></div>
+            <span class="'text-xs md:text-base'">
+              <input ref="fileUpload" type="file" hidden />
+              <button class="flex items-center bg-[#0093AD] text-white px-4 py-2 rounded-md" @click="chooseFile">
+                <img src="images/icons/download.svg" class="mr-2" alt="" />
+                Import Content
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <section class="flex flex-col gap-[25px] w-[305px]">
+          <div class="bg-white shadow-xl px-4 py-2 rounded">
+            <div class="flex flex-col gap-4">
+              <h1 class="font-bold text-sm text-spacecadet-100">
+                Skill Level
+              </h1>
+              <div class="flex items-center gap-2.5">
+                <input type="radio" name="skill" class="border-[1.5px] border-[#EFEFEF" value="beginner" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Beginner
+                </p>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <input type="radio" name="skill" class="border-[1.5px] border-[#EFEFEF" value="intermediate" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Intermediate
+                </p>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <input type="radio" name="skill" class="border-[1.5px] border-[#EFEFEF" value="advanced" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Advanced
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-col gap-4 mt-10">
+              <p class="font-bold text-sm text-spacecadet-100">Type</p>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Video" />
+                <p class="font-medium text-sm text-spacecadet-100">Video</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Podcast" />
+                <p class="font-medium text-sm text-spacecadet-100">Podcast</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Webinar" />
+                <p class="font-medium text-sm text-spacecadet-100">Webinar</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Articles" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Articles
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Coourse" />
+                <p class="font-medium text-sm text-spacecadet-100">Coourse</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Karya Tulis" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Karya Tulis
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Journey" />
+                <p class="font-medium text-sm text-spacecadet-100">Journey</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Program" />
+                <p class="font-medium text-sm text-spacecadet-100">Program</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Survey" />
+                <p class="font-medium text-sm text-spacecadet-100">Survey</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Case Study" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Case Study
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Digilib" />
+                <p class="font-medium text-sm text-spacecadet-100">Digilib</p>
+              </div>
+            </div>
+            <div class="flex flex-col gap-4 mt-10">
+              <p class="font-bold text-sm text-spacecadet-100">Category</p>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Video" />
+                <p class="font-medium text-sm text-spacecadet-100">Video</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Podcast" />
+                <p class="font-medium text-sm text-spacecadet-100">Podcast</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Webinar" />
+                <p class="font-medium text-sm text-spacecadet-100">Webinar</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Articles" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Articles
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Coourse" />
+                <p class="font-medium text-sm text-spacecadet-100">Coourse</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Karya Tulis" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Karya Tulis
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Journey" />
+                <p class="font-medium text-sm text-spacecadet-100">Journey</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Program" />
+                <p class="font-medium text-sm text-spacecadet-100">Program</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Survey" />
+                <p class="font-medium text-sm text-spacecadet-100">Survey</p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Case Study" />
+                <p class="font-medium text-sm text-spacecadet-100">
+                  Case Study
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <input type="checkbox" class="border-[1.5px] border-[#EFEFEF]" value="Digilib" />
+                <p class="font-medium text-sm text-spacecadet-100">Digilib</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="flex flex-col">
+          <section class="grid grid-cols-1 md:grid-cols-3 gap-[15px] w-full">
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-content relative flex h-full bg-white shadow-lg rounded-md flex-col">
+                <div class="relative">
+                  <img src="images/default/content-default.png" class="h-[250px] w-full rounded-t-md" />
+                  <div class="backdrop-banner absolute top-0 w-full h-full backdrop-brightness-[.4] rounded z-10">
+                    <div class="flex justify-center items-center h-full w-full">
+                      <a href="1" class="border outline-white text-white text-sm px-5 py-2 rounded">review</a><button
+                        class="bg-white text-black text-sm px-5 py-2 rounded ml-4">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute w-full top-4">
+                  <div class="flex justify-between">
+                    <div class="flex items-center w-fit rounded-full px-3 py-2 ml-5" style="
+                          background: rgb(0, 147, 173);
+                          color: rgb(255, 255, 255);
+                        ">
+                      Free
+                    </div>
+                    <img src="images/icons/uncheked.svg" class="mr-5" alt="select-icon" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-4 justify-between h-full">
+                  <div class="py-2 px-3 mt-1">
+                    <div class="">
+                      <h4 class="text-[#457B9D] text-base font-bold">
+                        FWA &amp; OKR “New Ways of Working in Digital Era
+                      </h4>
+                      <p class="text-[#8fafc4] mt-2 text-xs">[ Advance ]</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-between p-2 px-3 items-center">
+                    <div class="flex items-center gap-2">
+                      <img class="rounded-full w-10 h-10" src="images/default/user-default.png" />
+                      <div class="flex flex-col gap-1">
+                        <p class="font-light text-spacecadet-100 text-xs">
+                          Microsoft
+                        </p>
+                        <p class="text-[#a6a9bc] ml-2 text-xs !m-0">
+                          100x Views
+                        </p>
+                      </div>
+                    </div>
+                    <img src="images/icons/youtube-red.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div class="flex justify-between my-8">
+            <div class="flex gap-1 items-center text-[#457B9D]">
+              <p class="text-sm">Showing 1 to</p>
+              <span class="group">
+                <p
+                  class="bg-[#dae5eb] group-hover:hidden rounded-md px-4 py-1 items-center font-bold text-sm text-[#1F2855]">
+                  9
+                </p>
+                <select class="group-hover:flex hidden px-4 py-0 rounded-md border-0 bg-[#dae5eb] text-sm font-bold h-6">
+                  <option>9</option>
+                  <option>27</option>
+                  <option>54</option>
+                  <option>108</option>
+                </select>
+              </span>
+              <p class="text-sm">of 20 entries</p>
+            </div>
+            <div class="flex gap-1">
+              <button type="button" class="rounded-full bg-[#f9dbdb] p-1.5">
+                <img class="w-5" src="images/icons/chevron-left.svg" />
+              </button>
+              <div
+                class="flex items-center justify-center w-full rounded-full h-7 gap-2 px-4 bg-[#f9dbdb] text-[#d2000f]">
+                <div class="cursor-pointer">
+                  <li class="flex items-center justify-center active">1</li>
+                </div>
+                <div class="cursor-pointer">
+                  <li class="flex items-center justify-center">2</li>
+                </div>
+              </div>
+              <button type="button" class="rounded-full bg-[#f9dbdb] p-1.5">
+                <img class="w-5 rotate-180" src="images/icons/chevron-left.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+
 </html>

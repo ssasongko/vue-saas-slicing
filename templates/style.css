@@ -6,3 +6,32 @@
   color: rgba(0, 0, 0, 0.87);
   background-color: #242424;
 }
+
+.background {
+  background-image: url("images/background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.green-circle {
+  width: 309px;
+  height: 309px;
+  background: linear-gradient(143.48deg, #0093ad 24.31%, #1e2855 77.43%);
+  box-shadow: 10px 17px 91px 28px rgba(0, 0, 0, 0.1),
+    inset 0px 0px 100px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 166px rgba(0, 147, 173, 0.25),
+    inset 0px 4px 16px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.card-content .backdrop-banner {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card-content:hover .backdrop-banner {
+  opacity: 1;
+  visibility: visible;
+}
