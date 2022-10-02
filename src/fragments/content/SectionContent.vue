@@ -15,7 +15,7 @@
           :is-column="true"
           @selected="onSelectedContent(data)"
         >
-          <p class="text-[#a6a9bc] ml-2 text-xs !m-0">100 Views</p>
+          <p class="text-[#a6a9bc] ml-2 text-xs !m-0">100x Views</p>
           <template #icon>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
