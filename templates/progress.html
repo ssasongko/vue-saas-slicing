@@ -10,20 +10,17 @@
   <style>
     .circular-progress {
       position: relative;
-      height: 250px;
-      width: 250px;
+      height: 300px;
+      width: 300px;
       border-radius: 50%;
       background: conic-gradient(#0093AD 3.6deg, #ededed 0deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .circular-progress::before {
       content: "";
       position: absolute;
-      height: 210px;
-      width: 210px;
+      height: 260px;
+      width: 260px;
       border-radius: 50%;
       background-color: #fff;
     }
@@ -46,40 +43,49 @@
       </div>
     </div>
     <div
-      class="flex flex-col items-center justify-center gap-y-5 bg-white shadow-[0px_4px_24px_rgba(0,0,0,0.06)] rounded-md grow">
-      <div class="flex flex-col items-center gap-y-3">
+      class="flex flex-col items-center justify-center gap-y-12 bg-white shadow-[0px_4px_24px_rgba(0,0,0,0.06)] rounded-md grow">
+      <div class="flex flex-col items-center gap-y-2">
         <h1 class="text-[#1F2855] font-medium text-[28px]">Creating Clone...</h1>
         <h5 class="text-[#797F99] font-medium text-[15px]">The system is creating a clone, please wait...</h5>
       </div>
-      <div class="circular-progress">
-        <div class="flex flex-col items-center justify-center gap-y-2 progress-value">
-          <h2 class="text-[#0093AD] font-medium text-[77px]">85%</h2>
-          <span class="text-[#797F99] text-[18px]">progress</span>
+      <div id="circular-progress" class="flex justify-center items-center">
+        <div id="progress-value" class="flex flex-col items-center justify-center">
         </div>
       </div>
     </div>
   </div>
 </body>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
 <script>
-  let circularProgress = document.querySelector(".circular-progress"),
-    progressValue = document.querySelector(".progress-value");
 
-  let progressStartValue = 0,
-    progressEndValue = 100,
-    speed = 100;
+  $(function () {
+    const circularProgress = $("#circular-progress");
+    const progressValue = $("#progress-value");
 
-  let progress = setInterval(() => {
-    progressStartValue++;
+    let progressStartValue = 0;
+    let progressEndValue = 100;
+    let speed = 50;
 
-    progressValue.textContent = `${progressStartValue}%`
-    circularProgress.style.background = `conic-gradient(#0093AD ${progressStartValue * 3.6}deg, #ededed 0deg)`
+    const progress = setInterval(() => {
+      progressStartValue++;
 
-    if (progressStartValue == progressEndValue) {
-      clearInterval(progress);
-      window.location.href = "login.html";
-    }
-  }, speed);
+      progressValue.html(`
+        <h2 class="text-[#0093AD] font-bold text-[77px]">${progressStartValue}%</h2>
+        <span class="text-[#797F99] text-[18px]">progress</span>
+      `)
+      circularProgress.css('background', `conic-gradient(#0093AD ${progressStartValue * 3.6}deg, #ededed 0deg)`)
+
+      if (progressStartValue == progressEndValue) {
+        clearInterval(progress);
+        progressValue.html(`<a href="login.html"><img src="images/icons/check.svg"><p>FINISH</p></a>`)
+        progressValue.addClass('cursor-pointer')
+        // window.location.href = "login.html";
+      }
+    }, speed);
+  });
 
 </script>
 
