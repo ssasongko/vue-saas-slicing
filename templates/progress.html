@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css" />
   <title>Clone</title>
   <style>
-    .circular-progress {
+    #circular-progress {
       position: relative;
       height: 300px;
       width: 300px;
@@ -16,21 +16,13 @@
       background: conic-gradient(#0093AD 3.6deg, #ededed 0deg);
     }
 
-    .circular-progress::before {
+    #circular-progress::before {
       content: "";
       position: absolute;
       height: 260px;
       width: 260px;
       border-radius: 50%;
       background-color: #fff;
-    }
-
-    .progress-value {
-      position: relative;
-      border-radius: 1em;
-      font-size: 40px;
-      font-weight: 600;
-      color: #0093AD;
     }
   </style>
 </head>
@@ -49,7 +41,7 @@
         <h5 class="text-[#797F99] font-medium text-[15px]">The system is creating a clone, please wait...</h5>
       </div>
       <div id="circular-progress" class="flex justify-center items-center">
-        <div id="progress-value" class="flex flex-col items-center justify-center">
+        <div id="progress-value" class="flex flex-col items-center justify-center relative text-[#0093AD] text-[28px] font-bold rounded-[1em]">
         </div>
       </div>
     </div>
@@ -80,7 +72,7 @@
 
       if (progressStartValue == progressEndValue) {
         clearInterval(progress);
-        progressValue.html(`<a href="login.html"><img src="images/icons/check.svg"><p>FINISH</p></a>`)
+        progressValue.html(`<a href="login.html"><img src="images/icons/check.svg"><p class="text-center">FINISH</p></a>`)
         progressValue.addClass('cursor-pointer')
         // window.location.href = "login.html";
       }
