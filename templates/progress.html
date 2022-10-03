@@ -75,7 +75,9 @@
         progressValue.html(`<a href="login.html"><img src="images/icons/check.svg"><p class="text-center">FINISH</p></a>`)
         progressValue.addClass('cursor-pointer')
         $('#text-status').text('Clone has been created.')
-        // window.location.href = "login.html";
+        const redirect = setInterval(()=>{
+          window.location.href = "login.html";
+        }, 1000)
       }
     }, speed);
   });
