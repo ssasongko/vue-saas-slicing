@@ -8,6 +8,6 @@
   </g>
   <rect x="9.5" y="1" width="14" height="14" rx="7" fill="#25A0AB" />
   <rect x="9.5" y="1" width="14" height="14" rx="7" stroke="white" />
-  <text x="13" y="11" width="10" height="10" rx="1" fill="white" style="font-size: 8px" class="font-medium">{{ value }}</text>
+  <text x="13" y="11" width="10" height="10" rx="1" fill="white" style="font-size: 8px" class="font-medium"></text>
 </svg>
 
