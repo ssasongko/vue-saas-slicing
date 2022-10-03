@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Index</title>
+    <title>Register</title>
   </head>
 
   <body>
@@ -47,15 +47,12 @@
       >
         <div class="w-full flex flex-col gap-y-4">
           <h1 class="text-[#1F2855] text-[28px] font-medium">
-            Login
+            Create an account
           </h1>
-          <h5 class="text-[#797F99] text-[15px] font-medium">
-            Welcome to SaaS Technology, please login to Your Account!
-          </h5>
           <div class="flex flex-col gap-y-3">
             <div class="flex flex-col gap-y-1">
               <div>
-                <label class="text-[#1F2855] text-xs">Portal Name </label>
+                <label class="text-[#1F2855] text-xs">URL Domain </label>
                 <span class="text-red-500 text-xs">*</span>
               </div>
               <div class="flex border py-3 px-2 rounded-md">
@@ -66,6 +63,30 @@
                 <span class="font-semibold text-[#797F99] text-xs"
                   >digilearn.id</span
                 >
+              </div>
+            </div>
+            <div class="flex flex-col gap-y-1">
+              <div>
+                <label class="text-[#1F2855] text-xs">Platform Name </label>
+                <span class="text-red-500 text-xs">*</span>
+              </div>
+              <div class="flex border py-3 px-2 rounded-md">
+                <input
+                  class="w-full text-xs !outline-none"
+                  placeholder="LoremIpsum"
+                />
+              </div>
+            </div>
+            <div class="flex flex-col gap-y-1">
+              <div>
+                <label class="text-[#1F2855] text-xs">Fullname </label>
+                <span class="text-red-500 text-xs">*</span>
+              </div>
+              <div class="flex border py-3 px-2 rounded-md">
+                <input
+                  class="w-full text-xs !outline-none"
+                  placeholder="LoremIpsum"
+                />
               </div>
             </div>
             <div class="flex flex-col gap-y-1">
@@ -110,15 +131,18 @@
               href="content.html"
               target="_blank"
             >
-              <span class="">Login</span>
+              <span class="">Agree & Join</span>
               <img src="images/icons/chevron-right.svg">
             </a>
           </div>
           <div>
             <p class="text-sm text-center">
-              Don’t have an Account?
-              <a class="text-[#0093AD] font-medium text-sm" href="register.html">
-                Sign Up
+              Already have an Account?
+              <a 
+                class="text-[#0093AD] font-medium text-sm"
+                href="login.html"
+              >
+                Login
               </a>
             </p>
           </div>
