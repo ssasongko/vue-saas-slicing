@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home</title>
+  <title>Browse Library</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -57,23 +57,22 @@
           <img src="images/default/user-default.png" class="w-10 rounded-full cursor-pointer border bg-gray-100"
             alt="" />
           <div id="modalProfile"
-            class="absolute bg-white text-gray-500 shadow-global top-12 right-0 rounded-md w-44 hidden">
+            class="absolute bg-white text-gray-500 shadow-[0px_4px_24px_rgba(0,0,0,0.06)] top-12 right-0 rounded-md w-44 hidden">
             <div class="px-2 flex justify-between my-3">
               <span class="items-center font-semibold cursor-default">Profile</span>
               <span class="bg-[#D0F5E0] text-[#28C76F] rounded px-1">Free</span>
             </div>
             <div class="px-3">
-              <button onclick="showModalUpgrade()"
-                class="bg-[#0093AD] py-1 mb-2 px-1 w-full text-sm rounded text-white">
+              <button onclick="showModalUpgrade()" class="bg-[#0093AD] py-1 mb-2 px-1 w-full text-sm rounded text-white">
                 Upgrade Now
               </button>
             </div>
             <hr class="mt-2 text-[#B9B9C3]" />
-            <p class="py-3 px-3 hover:bg-powerblue-100 cursor-pointer">My Profile</p>
-            <p class="py-3 px-3 hover:bg-powerblue-100 cursor-pointer">Transaction</p>
-            <p class="py-3 px-3 hover:bg-powerblue-100 rounded-b-md cursor-pointer">
-              Logout
-            </p>
+            <p class="py-3 px-3 hover:bg-powerblue-100 cursor-pointer hover:bg-[#DCF0F1] hover:text-[#0093AD]">My Profile</p>
+            <p class="py-3 px-3 hover:bg-powerblue-100 cursor-pointer hover:bg-[#DCF0F1] hover:text-[#0093AD]">Transaction</p>
+            <p class="py-3 px-3 hover:bg-powerblue-100 cursor-pointer hover:bg-[#DCF0F1] hover:text-[#0093AD]">Setting</p>
+            <p class="py-3 px-3 hover:bg-powerblue-100 hover:rounded-b-md cursor-pointer hover:bg-[#DCF0F1] hover:text-[#0093AD]">
+              Logout</p>
           </div>
         </div>
       </div>
