@@ -38,7 +38,7 @@
       class="flex flex-col items-center justify-center gap-y-12 bg-white shadow-[0px_4px_24px_rgba(0,0,0,0.06)] rounded-md grow">
       <div class="flex flex-col items-center gap-y-2">
         <h1 class="text-[#1F2855] font-medium text-[28px]">Creating Clone...</h1>
-        <h5 class="text-[#797F99] font-medium text-[15px]">The system is creating a clone, please wait...</h5>
+        <h5 id="text-status" class="text-[#797F99] font-medium text-[15px]">The system is creating a clone, please wait...</h5>
       </div>
       <div id="circular-progress" class="flex justify-center items-center">
         <div id="progress-value" class="flex flex-col items-center justify-center relative text-[#0093AD] text-[28px] font-bold rounded-[1em]">
@@ -74,6 +74,7 @@
         clearInterval(progress);
         progressValue.html(`<a href="login.html"><img src="images/icons/check.svg"><p class="text-center">FINISH</p></a>`)
         progressValue.addClass('cursor-pointer')
+        $('#text-status').text('Clone has been created.')
         // window.location.href = "login.html";
       }
     }, speed);
