@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sweetalert2.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <main class="h-screen w-full flex items-center justify-center p-24">
+    <div class="flex items-center justify-center gap-x-6">
+      <button id="success"
+        class="md:text-sm text-xs font-medium w-[134px] bg-[#0093AD] px-3 py-3 text-white flex items-center justify-center gap-x-2 rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.06)]">
+        <span class="">Success</span>
+      </button>
+      <button id="warning"
+        class="md:text-sm text-xs font-medium w-[134px] bg-[#0093AD] px-3 py-3 text-white flex items-center justify-center gap-x-2 rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.06)]">
+        <span class="">Warning</span>
+      </button>
+      <button id="error"
+        class="md:text-sm text-xs font-medium w-[134px] bg-[#0093AD] px-3 py-3 text-white flex items-center justify-center gap-x-2 rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.06)]">
+        <span class="">Error</span>
+      </button>
+    </div>
+  </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+    $("#success").click(function () {
+      Swal.fire({
+        title: 'success!',
+        text: 'Success save content',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    })
+
+    $("#warning").click(function () {
+      Swal.fire({
+        title: 'warning!',
+        text: 'Do you want to remove this content?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ok'
+      })
+    })
+
+    $("#error").click(function () {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Do you want to continue',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+    })
+</script>
+
+</html>

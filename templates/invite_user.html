@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyDigilearn SaaS | Setup User</title>
+  <link rel="apple-touch-icon" href="https://account.mydigilearn.web.id/assets/ico_mydigilearn.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://account.mydigilearn.web.id/assets/ico_mydigilearn.png">
+  <link rel="stylesheet" href="https://account.mydigilearn.web.id/assets3/style.css" />
+</head>
+
+<body>
+  <div class="bg-[#F8F8F8] pt-1 min-h-screen w-full">
+    <div class="bg-white shadow-lg m-6 rounded-l-lg z-50">
+      <div class="flex justify-between items-center mx-6 md:mx-24 py-3">
+        <img src="https://account.mydigilearn.web.id/assets3/images/mdl.png" class="w-[150px] md:w-auto" alt="logo" />
+        <a href="https://account.mydigilearn.web.id/setup_finish" class="text-[#797F99]">Skip to next step ></a>
+      </div>
+    </div>
+    <div class="flex flex-col gap-y-8 py-5 bg-[#F8F8F8] mx-6 md:mx-32">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+        <div class="flex flex-col justify-center gap-y-1 text-left">
+          <h1 class="text-[#1F2855] text-lg font-medium">Invite User</h1>
+          <span class="text-[#797F99] text-base">Please invite your team to join your domain</span>
+        </div>
+        <a href="https://account.mydigilearn.web.id/setup_finish"
+          class="text-sm font-medium w-[95px] bg-[#0093AD] mt-5 md:mt-0 py-2.5 px-5 text-white flex items-center justify-center gap-x-2 rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.06)]">Finish</a>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between gap-y-6 md:gap-y-0 gap-x-6">
+        <div class="w-full md:w-1/2 flex flex-col justify-center gap-y-4 bg-white rounded-lg shadow-lg py-3.5 px-6">
+          <h1 class="text-[#1F2855] text-lg font-medium">Add User</h1>
+          Array()
+          <form method="post" action="https://account.mydigilearn.web.id/setup_user" class="flex flex-col gap-y-3">
+            <div class="flex flex-col gap-y-1">
+              <div>
+                <label class="text-[#1F2855] text-xs">Full Name </label>
+                <span class="text-[#0093AD] text-xs">*</span>
+              </div>
+              <div class="flex border py-3 px-2 rounded-md">
+                <input type="text" class="w-full text-xs !outline-none" id="name" name="name" placeholder="Full Name"
+                  value="" />
+              </div>
+            </div>
+            <div class="flex flex-col gap-y-1">
+              <div>
+                <label class="text-[#1F2855] text-xs">Email </label>
+                <span class="text-[#0093AD] text-xs">*</span>
+              </div>
+              <div class="flex border py-3 px-2 rounded-md">
+                <input type="text" class="w-full text-xs !outline-none" id="email" name="email"
+                  placeholder="mail@mail.com" value="" />
+              </div>
+            </div>
+            <div class="flex flex-col gap-y-1">
+              <div>
+                <label class="text-[#1F2855] text-xs">Password </label>
+                <span class="text-[#0093AD] text-xs">*</span>
+              </div>
+              <div class="flex border py-3 px-2 rounded-md">
+                <input type="password" class="w-full text-xs !outline-none" id="password" name="password"
+                  placeholder="password here" value="" />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-y-1">
+              <div>
+              </div>
+              <div class="flex gap-x-5">
+                <button id="invite" name="tombol" value="invite"
+                  class="md:text-sm text-xs font-medium w-[134px] bg-[#0093AD] px-3 py-3 text-white flex items-center justify-center gap-x-2 rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.06)]">
+                  <span class="">Send Invite</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col gap-y-4 bg-white rounded-lg shadow-lg py-3.5 px-6 h-min-full">
+          <h1 class="text-[#1F2855] text-lg font-medium">Invite by link</h1>
+          <div class="flex flex-col gap-y-1">
+            <div>
+              <label class="text-[#1F2855] text-xs">Link</label>
+            </div>
+            <div class="flex gap-x-5">https://account.mydigilearn.web.id/invite/8tIokDZowH8WqHqVZNat</div>
+          </div>
+          <div class="flex gap-x-5">
+            <button id="copy" name="copy"
+              class="md:text-sm text-xs font-medium w-[134px] bg-[#0093AD] px-3 py-3 text-white flex items-center justify-center gap-x-2 rounded-lg shadow-[0px_4px_24px_rgba(0,0,0,0.06)]">
+              <span class="">Copy Link</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+  // button send link
+  $("#invite").click(() => {
+    Swal.fire({
+      title: 'success!',
+      text: 'Invite succeed',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    })
+  })
+
+  // button click copy link
+  $("#copy").click(() => {
+
+    copyToClipboard('https://account.mydigilearn.web.id/invite/8tIokDZowH8WqHqVZNat');
+
+    Swal.fire({
+      title: 'success!',
+      text: 'Link was copied',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    })
+  })
+
+  function copyToClipboard(link) {
+    navigator.clipboard.writeText(link);
+  }
+</script>
+
+</html>
