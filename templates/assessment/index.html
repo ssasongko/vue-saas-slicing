@@ -1,0 +1,701 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="bg-[#EEEEEE]">
+  <header class="flex justify-between py-2.5 px-6 shadow-sm bg-red-500 sticky top-0 z-50">
+    <div class="flex items-center">
+      <div class="cursor-pointer hidden lg:block">
+        <img src="../images/logo/digi-white.svg" />
+      </div>
+      <div class="cursor-pointer lg:ml-8">
+        <img src="../images/icons/grid-white.svg" />
+      </div>
+      <div class="lg:ml-6">
+        <button class="cursor-pointer text-sm text-white hidden md:block">
+          Knowledge Feed
+        </button>
+      </div>
+      <div class="lg:ml-8 ml-4">
+        <div class="relative">
+          <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            <MagnifierIcon />
+          </div>
+          <input id="default-search" type="search"
+            class="block rounded-full py-1.5 pl-10 lg:w-[30rem] text-sm focus:outline-none bg-red-200 text-gray-900"
+            placeholder="Search content or author..." required />
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center">
+      <div class="flex items-center">
+        <a href="browse.html" target="_blank" class="text-sm pr-2 hidden lg:block cursor-pointer text-white">
+          Browse Content Library
+        </a>
+        <div class="flex items-center pr-6 gap-3 relative">
+          <img src="../images/icons/plus.svg" class="cursor-pointer" />
+        </div>
+        <div class="block pr-6 cursor-pointer">
+          <img src="../images/icons/cart.svg" />
+        </div>
+        <img src="./../images/icons/NotificationIcon.svg" alt="" />
+        <div class="flex items-center relative" onclick="showModalProfile()">
+          <div class="flex flex-col text-right mr-2">
+            <p class="lg:ml-3 text-sm font-bold hidden lg:block cursor-pointer text-white">
+              John Doe
+            </p>
+            <span class="text-xs text-white">Free</span>
+          </div>
+          <img src="../images/default/user-default.png" class="w-10 rounded-full cursor-pointer border bg-gray-100"
+            alt="" />
+          <div class="absolute bg-white text-gray-500 shadow-global top-12 right-0 rounded-md w-44 hidden">
+            <div class="px-2 flex justify-between my-3">
+              <span class="items-center font-semibold cursor-default">Profile</span>
+              <span class="bg-[#D0F5E0] text-[#28C76F] rounded px-1">Free</span>
+            </div>
+            <div class="px-3">
+              <button class="bg-[#0093AD] py-1 mb-2 px-1 w-full text-sm rounded text-white">
+                Upgrade Now
+              </button>
+            </div>
+            <hr class="mt-2 text-[#B9B9C3]" />
+            <p class="py-3 px-3 hover:bg-powerblue-100 cursor-pointer">My Profile</p>
+            <p class="py-3 px-3 hover:bg-powerblue-100 cursor-pointer">Transaction</p>
+            <p class="py-3 px-3 hover:bg-powerblue-100 rounded-b-md cursor-pointer">
+              Logout
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="px-10 md:px-20 py-6 bg-charcoal-primary">
+      <div class="grid grid-cols-12 relative">
+        <div class="col-span-12 md:col-span-7 relative">
+
+          <!-- Breadcrumb -->
+          <div class="flex gap-2">
+            <div class="flex items-center justify-center gap-2">
+              <a href="/home" class="flex items-center text-powerblue-100 font-medium">Home</a>
+              <!-- Right Chevron Icon -->
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M9.15768 7.40768L5.65768 10.9077C5.54102 11.0243 5.42435 11.0827 5.24935 11.0827C5.07435 11.0827 4.95768 11.0243 4.84102 10.9077C4.60768 10.6743 4.60768 10.3243 4.84102 10.091L7.93268 6.99935L4.84102 3.90768C4.60768 3.67435 4.60768 3.32435 4.84102 3.09102C5.07435 2.85768 5.42435 2.85768 5.65768 3.09102L9.15768 6.59102C9.39102 6.82435 9.39102 7.17435 9.15768 7.40768Z"
+                  fill="white" />
+                <mask id="mask0_5891_147339" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="2" width="6"
+                  height="10">
+                  <path
+                    d="M9.15768 7.40768L5.65768 10.9077C5.54102 11.0243 5.42435 11.0827 5.24935 11.0827C5.07435 11.0827 4.95768 11.0243 4.84102 10.9077C4.60768 10.6743 4.60768 10.3243 4.84102 10.091L7.93268 6.99935L4.84102 3.90768C4.60768 3.67435 4.60768 3.32435 4.84102 3.09102C5.07435 2.85768 5.42435 2.85768 5.65768 3.09102L9.15768 6.59102C9.39102 6.82435 9.39102 7.17435 9.15768 7.40768Z"
+                    fill="white" />
+                </mask>
+                <g mask="url(#mask0_5891_147339)">
+                  <rect width="14" height="14" fill="white" />
+                </g>
+              </svg>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <a href="/home" class="flex items-center text-powerblue-100 font-medium">Assessment</a>
+              <!-- Right Chevron Icon -->
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M9.15768 7.40768L5.65768 10.9077C5.54102 11.0243 5.42435 11.0827 5.24935 11.0827C5.07435 11.0827 4.95768 11.0243 4.84102 10.9077C4.60768 10.6743 4.60768 10.3243 4.84102 10.091L7.93268 6.99935L4.84102 3.90768C4.60768 3.67435 4.60768 3.32435 4.84102 3.09102C5.07435 2.85768 5.42435 2.85768 5.65768 3.09102L9.15768 6.59102C9.39102 6.82435 9.39102 7.17435 9.15768 7.40768Z"
+                  fill="white" />
+                <mask id="mask0_5891_147339" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="2" width="6"
+                  height="10">
+                  <path
+                    d="M9.15768 7.40768L5.65768 10.9077C5.54102 11.0243 5.42435 11.0827 5.24935 11.0827C5.07435 11.0827 4.95768 11.0243 4.84102 10.9077C4.60768 10.6743 4.60768 10.3243 4.84102 10.091L7.93268 6.99935L4.84102 3.90768C4.60768 3.67435 4.60768 3.32435 4.84102 3.09102C5.07435 2.85768 5.42435 2.85768 5.65768 3.09102L9.15768 6.59102C9.39102 6.82435 9.39102 7.17435 9.15768 7.40768Z"
+                    fill="white" />
+                </mask>
+                <g mask="url(#mask0_5891_147339)">
+                  <rect width="14" height="14" fill="white" />
+                </g>
+              </svg>
+            </div>
+            <a aria-current="page" href="/assessment" class="text-white">The Best Features Coming to iOS and Web design
+            </a>
+          </div>
+
+          <!-- Title -->
+          <h1 class="py-3 text-lg text-white font-bold">
+            The Best Features Coming to iOS and Web design
+          </h1>
+
+          <div class="flex flex-col md:flex-row md:justify-between mt-36 space-y-2 md:space-y-0">
+            <div class="flex gap-2 md:gap-3">
+              <!-- Share Button -->
+              <button type="button"
+                class="flex rounded-md bg-virindian-primary justify-center items-center px-6 py-2 text-white gap-2">
+                <!-- Share Icon -->
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M8.86602 9.95065C9.27435 9.54232 9.85768 9.25065 10.4993 9.25065C11.7827 9.25065 12.8327 10.3007 12.8327 11.584C12.8327 12.8673 11.7827 13.9173 10.4993 13.9173C9.21601 13.9173 8.16602 12.8673 8.16602 11.584C8.16602 11.4673 8.1806 11.3652 8.19518 11.2632L8.19518 11.2631C8.20977 11.1611 8.22435 11.059 8.22435 10.9423L5.13268 9.13398C4.72435 9.54232 4.14102 9.83399 3.49935 9.83399C2.21602 9.83399 1.16602 8.78399 1.16602 7.50065C1.16602 6.21732 2.21602 5.16732 3.49935 5.16732C4.14102 5.16732 4.72435 5.45898 5.13268 5.86732L8.28268 4.05898C8.27268 4.01896 8.26267 3.98065 8.25296 3.94346L8.25295 3.94345C8.20605 3.76389 8.16602 3.61062 8.16602 3.41732C8.16602 2.13398 9.21601 1.08398 10.4993 1.08398C11.7827 1.08398 12.8327 2.13398 12.8327 3.41732C12.8327 4.70065 11.7827 5.75065 10.4993 5.75065C9.85768 5.75065 9.27435 5.45898 8.80768 5.05065L5.71602 6.85898C5.72602 6.89901 5.73603 6.93732 5.74574 6.9745L5.74575 6.97453L5.74575 6.97453C5.79265 7.15409 5.83268 7.30735 5.83268 7.50065C5.83268 7.61732 5.8181 7.7194 5.80351 7.82149C5.78893 7.92357 5.77435 8.02565 5.77435 8.14232L8.86602 9.95065ZM11.666 3.41732C11.666 2.77565 11.141 2.25065 10.4993 2.25065C9.85768 2.25065 9.33268 2.77565 9.33268 3.41732C9.33268 4.05898 9.85768 4.58398 10.4993 4.58398C11.141 4.58398 11.666 4.05898 11.666 3.41732ZM3.49935 8.66732C2.85768 8.66732 2.33268 8.14232 2.33268 7.50065C2.33268 6.85898 2.85768 6.33398 3.49935 6.33398C4.14102 6.33398 4.66602 6.85898 4.66602 7.50065C4.66602 8.14232 4.14102 8.66732 3.49935 8.66732ZM9.33268 11.584C9.33268 12.2257 9.85768 12.7507 10.4993 12.7507C11.141 12.7507 11.666 12.2257 11.666 11.584C11.666 10.9423 11.141 10.4173 10.4993 10.4173C10.091 10.4173 9.68268 10.6507 9.50768 11.0007C9.39102 11.1757 9.33268 11.3507 9.33268 11.584Z"
+                    fill="black" />
+                  <mask id="mask0_6158_18068" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="12"
+                    height="13">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M8.86602 9.95065C9.27435 9.54232 9.85768 9.25065 10.4993 9.25065C11.7827 9.25065 12.8327 10.3007 12.8327 11.584C12.8327 12.8673 11.7827 13.9173 10.4993 13.9173C9.21601 13.9173 8.16602 12.8673 8.16602 11.584C8.16602 11.4673 8.1806 11.3652 8.19518 11.2632L8.19518 11.2631C8.20977 11.1611 8.22435 11.059 8.22435 10.9423L5.13268 9.13398C4.72435 9.54232 4.14102 9.83399 3.49935 9.83399C2.21602 9.83399 1.16602 8.78399 1.16602 7.50065C1.16602 6.21732 2.21602 5.16732 3.49935 5.16732C4.14102 5.16732 4.72435 5.45898 5.13268 5.86732L8.28268 4.05898C8.27268 4.01896 8.26267 3.98065 8.25296 3.94346L8.25295 3.94345C8.20605 3.76389 8.16602 3.61062 8.16602 3.41732C8.16602 2.13398 9.21601 1.08398 10.4993 1.08398C11.7827 1.08398 12.8327 2.13398 12.8327 3.41732C12.8327 4.70065 11.7827 5.75065 10.4993 5.75065C9.85768 5.75065 9.27435 5.45898 8.80768 5.05065L5.71602 6.85898C5.72602 6.89901 5.73603 6.93732 5.74574 6.9745L5.74575 6.97453L5.74575 6.97453C5.79265 7.15409 5.83268 7.30735 5.83268 7.50065C5.83268 7.61732 5.8181 7.7194 5.80351 7.82149C5.78893 7.92357 5.77435 8.02565 5.77435 8.14232L8.86602 9.95065ZM11.666 3.41732C11.666 2.77565 11.141 2.25065 10.4993 2.25065C9.85768 2.25065 9.33268 2.77565 9.33268 3.41732C9.33268 4.05898 9.85768 4.58398 10.4993 4.58398C11.141 4.58398 11.666 4.05898 11.666 3.41732ZM3.49935 8.66732C2.85768 8.66732 2.33268 8.14232 2.33268 7.50065C2.33268 6.85898 2.85768 6.33398 3.49935 6.33398C4.14102 6.33398 4.66602 6.85898 4.66602 7.50065C4.66602 8.14232 4.14102 8.66732 3.49935 8.66732ZM9.33268 11.584C9.33268 12.2257 9.85768 12.7507 10.4993 12.7507C11.141 12.7507 11.666 12.2257 11.666 11.584C11.666 10.9423 11.141 10.4173 10.4993 10.4173C10.091 10.4173 9.68268 10.6507 9.50768 11.0007C9.39102 11.1757 9.33268 11.3507 9.33268 11.584Z"
+                      fill="white" />
+                  </mask>
+                  <g mask="url(#mask0_6158_18068)">
+                    <rect y="0.5" width="14" height="14" fill="white" />
+                  </g>
+                </svg>
+                <span>Share</span>
+
+              </button>
+
+              <!-- Bookmark Button -->
+              <button type="button"
+                class="flex rounded-md bg-virindian-primary justify-center items-center px-5 py-2 text-white gap-2">
+                <!-- Bookmark Icon -->
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M4.08398 1.66602H9.91732C10.909 1.66602 11.6673 2.42435 11.609 3.41602V12.7493C11.609 12.9827 11.4923 13.1577 11.3173 13.2743C11.2007 13.3327 11.1423 13.3327 11.0257 13.3327C10.909 13.3327 10.7923 13.2743 10.6757 13.216L6.94232 10.5327L3.20898 13.216C3.03398 13.3327 2.80065 13.391 2.62565 13.2743C2.45065 13.1577 2.33398 12.9827 2.33398 12.7493V3.41602C2.33398 2.42435 3.09232 1.66602 4.08398 1.66602ZM7.35065 9.36602L10.5007 11.641V3.41602C10.5007 3.06602 10.2673 2.83268 9.91732 2.83268H4.08398C3.73398 2.83268 3.50065 3.06602 3.50065 3.41602V11.641L6.65065 9.36602C6.76732 9.30768 6.88398 9.24935 7.00065 9.24935C7.11732 9.24935 7.23398 9.30768 7.35065 9.36602Z"
+                    fill="black" />
+                  <mask id="mask0_6158_15302" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="1" width="10"
+                    height="13">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M4.08398 1.66602H9.91732C10.909 1.66602 11.6673 2.42435 11.609 3.41602V12.7493C11.609 12.9827 11.4923 13.1577 11.3173 13.2743C11.2007 13.3327 11.1423 13.3327 11.0257 13.3327C10.909 13.3327 10.7923 13.2743 10.6757 13.216L6.94232 10.5327L3.20898 13.216C3.03398 13.3327 2.80065 13.391 2.62565 13.2743C2.45065 13.1577 2.33398 12.9827 2.33398 12.7493V3.41602C2.33398 2.42435 3.09232 1.66602 4.08398 1.66602ZM7.35065 9.36602L10.5007 11.641V3.41602C10.5007 3.06602 10.2673 2.83268 9.91732 2.83268H4.08398C3.73398 2.83268 3.50065 3.06602 3.50065 3.41602V11.641L6.65065 9.36602C6.76732 9.30768 6.88398 9.24935 7.00065 9.24935C7.11732 9.24935 7.23398 9.30768 7.35065 9.36602Z"
+                      fill="white" />
+                  </mask>
+                  <g mask="url(#mask0_6158_15302)">
+                    <rect y="0.5" width="14" height="14" fill="white" />
+                  </g>
+                </svg>
+                <span>Bookmark</span>
+              </button>
+
+              <!-- Report -->
+              <button type="button"
+                class="flex rounded-md bg-rossocorsa-primary justify-center items-center p-3 text-white gap-2 prevent-class">
+                <!-- Report Icon -->
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M0.583984 7.50065C0.583984 11.059 3.44232 13.9173 7.00065 13.9173C10.559 13.9173 13.4173 11.059 13.4173 7.50065C13.4173 3.94232 10.559 1.08398 7.00065 1.08398C3.44232 1.08398 0.583984 3.94232 0.583984 7.50065ZM1.75065 7.50065C1.75065 4.58398 4.08398 2.25065 7.00065 2.25065C9.91732 2.25065 12.2507 4.58398 12.2507 7.50065C12.2507 10.4173 9.91732 12.7507 7.00065 12.7507C4.08398 12.7507 1.75065 10.4173 1.75065 7.50065ZM7.58398 7.50065V5.16732C7.58398 4.81732 7.35065 4.58398 7.00065 4.58398C6.65065 4.58398 6.41732 4.81732 6.41732 5.16732V7.50065C6.41732 7.85065 6.65065 8.08398 7.00065 8.08398C7.35065 8.08398 7.58398 7.85065 7.58398 7.50065ZM7.52565 10.0673C7.52565 10.1257 7.46732 10.184 7.40898 10.2423C7.29232 10.359 7.17565 10.4173 6.94232 10.4173C6.76732 10.4173 6.65065 10.359 6.53398 10.2423C6.41732 10.1257 6.35898 10.009 6.35898 9.83398C6.35898 9.76564 6.379 9.71732 6.39558 9.67728C6.40731 9.64898 6.41732 9.62481 6.41732 9.60065C6.41732 9.54232 6.47565 9.48398 6.53398 9.42565C6.70898 9.25065 6.94232 9.19232 7.17565 9.30898C7.20482 9.30898 7.2194 9.32357 7.23398 9.33815C7.24857 9.35273 7.26315 9.36732 7.29232 9.36732C7.35065 9.36732 7.40898 9.42565 7.40898 9.42565C7.43815 9.45482 7.45273 9.48398 7.46732 9.51315C7.4819 9.54232 7.49648 9.57148 7.52565 9.60065C7.58398 9.65898 7.58398 9.77565 7.58398 9.83398C7.58398 9.86315 7.5694 9.9069 7.55482 9.95065C7.54023 9.9944 7.52565 10.0382 7.52565 10.0673Z"
+                    fill="black" />
+                  <mask id="mask0_6158_30515" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="1" width="14"
+                    height="13">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M0.583984 7.50065C0.583984 11.059 3.44232 13.9173 7.00065 13.9173C10.559 13.9173 13.4173 11.059 13.4173 7.50065C13.4173 3.94232 10.559 1.08398 7.00065 1.08398C3.44232 1.08398 0.583984 3.94232 0.583984 7.50065ZM1.75065 7.50065C1.75065 4.58398 4.08398 2.25065 7.00065 2.25065C9.91732 2.25065 12.2507 4.58398 12.2507 7.50065C12.2507 10.4173 9.91732 12.7507 7.00065 12.7507C4.08398 12.7507 1.75065 10.4173 1.75065 7.50065ZM7.58398 7.50065V5.16732C7.58398 4.81732 7.35065 4.58398 7.00065 4.58398C6.65065 4.58398 6.41732 4.81732 6.41732 5.16732V7.50065C6.41732 7.85065 6.65065 8.08398 7.00065 8.08398C7.35065 8.08398 7.58398 7.85065 7.58398 7.50065ZM7.52565 10.0673C7.52565 10.1257 7.46732 10.184 7.40898 10.2423C7.29232 10.359 7.17565 10.4173 6.94232 10.4173C6.76732 10.4173 6.65065 10.359 6.53398 10.2423C6.41732 10.1257 6.35898 10.009 6.35898 9.83398C6.35898 9.76564 6.379 9.71732 6.39558 9.67728C6.40731 9.64898 6.41732 9.62481 6.41732 9.60065C6.41732 9.54232 6.47565 9.48398 6.53398 9.42565C6.70898 9.25065 6.94232 9.19232 7.17565 9.30898C7.20482 9.30898 7.2194 9.32357 7.23398 9.33815C7.24857 9.35273 7.26315 9.36732 7.29232 9.36732C7.35065 9.36732 7.40898 9.42565 7.40898 9.42565C7.43815 9.45482 7.45273 9.48398 7.46732 9.51315C7.4819 9.54232 7.49648 9.57148 7.52565 9.60065C7.58398 9.65898 7.58398 9.77565 7.58398 9.83398C7.58398 9.86315 7.5694 9.9069 7.55482 9.95065C7.54023 9.9944 7.52565 10.0382 7.52565 10.0673Z"
+                      fill="white" />
+                  </mask>
+                  <g mask="url(#mask0_6158_30515)">
+                    <rect y="0.5" width="14" height="14" fill="white" />
+                  </g>
+                </svg>
+              </button>
+            </div>
+            <div class="flex gap-2 md:gap-3">
+              <button
+                class="flex rounded-md bg-powerblue-primary justify-center items-center px-6 py-2 text-virindian-primary gap-2"
+                type="button">
+                <!-- Like Icon -->
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M13.0481 5.86732C12.7528 5.51732 12.3393 5.22565 11.8667 5.16732H11.5713H8.85403V3.41732C8.85403 2.13398 7.79074 1.08398 6.49116 1.08398C6.25487 1.08398 6.01858 1.20065 5.95951 1.43398L3.77386 6.33398H2.35614C1.35192 6.33398 0.583984 7.09232 0.583984 8.08398V12.1673C0.583984 13.159 1.35192 13.9173 2.35614 13.9173H10.8034C11.6895 13.9173 12.3983 13.2757 12.5755 12.459L13.4026 7.20898C13.4616 6.74232 13.3435 6.27565 13.0481 5.86732ZM3.53757 12.7507H2.35614C2.00171 12.7507 1.76542 12.5173 1.76542 12.1673V8.08398C1.76542 7.73398 2.00171 7.50065 2.35614 7.50065H3.53757V12.7507ZM10.8034 12.7507C11.0988 12.7507 11.335 12.5757 11.3941 12.284L12.2802 6.97565C12.2802 6.85898 12.2802 6.68398 12.162 6.56732C12.0439 6.45065 11.9258 6.33398 11.7485 6.33398H11.6304H8.26331C7.90888 6.33398 7.67259 6.10065 7.67259 5.75065V3.41732C7.67259 2.89232 7.31816 2.48398 6.84559 2.30898L4.71901 7.03398V12.7507H10.8034Z"
+                    fill="black" />
+                  <mask id="mask0_6158_15313" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="1" width="14"
+                    height="13">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M13.0481 5.86732C12.7528 5.51732 12.3393 5.22565 11.8667 5.16732H11.5713H8.85403V3.41732C8.85403 2.13398 7.79074 1.08398 6.49116 1.08398C6.25487 1.08398 6.01858 1.20065 5.95951 1.43398L3.77386 6.33398H2.35614C1.35192 6.33398 0.583984 7.09232 0.583984 8.08398V12.1673C0.583984 13.159 1.35192 13.9173 2.35614 13.9173H10.8034C11.6895 13.9173 12.3983 13.2757 12.5755 12.459L13.4026 7.20898C13.4616 6.74232 13.3435 6.27565 13.0481 5.86732ZM3.53757 12.7507H2.35614C2.00171 12.7507 1.76542 12.5173 1.76542 12.1673V8.08398C1.76542 7.73398 2.00171 7.50065 2.35614 7.50065H3.53757V12.7507ZM10.8034 12.7507C11.0988 12.7507 11.335 12.5757 11.3941 12.284L12.2802 6.97565C12.2802 6.85898 12.2802 6.68398 12.162 6.56732C12.0439 6.45065 11.9258 6.33398 11.7485 6.33398H11.6304H8.26331C7.90888 6.33398 7.67259 6.10065 7.67259 5.75065V3.41732C7.67259 2.89232 7.31816 2.48398 6.84559 2.30898L4.71901 7.03398V12.7507H10.8034Z"
+                      fill="white" />
+                  </mask>
+                  <g mask="url(#mask0_6158_15313)">
+                    <rect y="0.5" width="14" height="14" fill="#0093AD" />
+                  </g>
+                </svg>
+                <span>0</span>
+              </button>
+              <button
+                class="flex rounded-md bg-powerblue-primary justify-center items-center px-6 py-2 text-virindian-primary gap-2"
+                type="button">
+                <!-- Dislike Button -->
+                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M13.4173 2.78338C13.2992 1.78718 12.4721 1.08398 11.4678 1.08398H11.4087H3.19718C2.31104 1.08398 1.60213 1.72858 1.4249 2.54898L0.59784 7.82295C0.479689 8.76054 1.12952 9.69814 2.07474 9.81534H2.37012H5.14669V11.5733C5.14669 12.8625 6.21005 13.9173 7.50972 13.9173C7.74603 13.9173 7.98233 13.8001 8.04141 13.5657L10.2272 8.64335H11.4087C12.413 8.64335 13.2401 7.94015 13.3582 6.94395V6.88535V2.84198C13.4173 2.84198 13.4173 2.78338 13.4173 2.78338ZM9.282 7.99875L7.15527 12.7453C6.68266 12.5695 6.32821 12.1593 6.32821 11.6319V9.28794C6.32821 8.93634 6.0919 8.70194 5.73745 8.70194H2.37012H2.25197C1.95659 8.64334 1.72028 8.35035 1.77936 8.05735L2.60642 2.78338C2.6655 2.49038 2.9018 2.25598 3.19718 2.25598H9.282V7.99875ZM11.4678 7.52995C11.8223 7.52995 12.1767 7.23695 12.2358 6.88535V2.90057C12.1767 2.54898 11.8223 2.25598 11.4678 2.25598H10.4635V7.52995H11.4678Z"
+                    fill="black" />
+                  <mask id="mask0_6158_17875" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="1" width="14"
+                    height="13">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M13.4173 2.78338C13.2992 1.78718 12.4721 1.08398 11.4678 1.08398H11.4087H3.19718C2.31104 1.08398 1.60213 1.72858 1.4249 2.54898L0.59784 7.82295C0.479689 8.76054 1.12952 9.69814 2.07474 9.81534H2.37012H5.14669V11.5733C5.14669 12.8625 6.21005 13.9173 7.50972 13.9173C7.74603 13.9173 7.98233 13.8001 8.04141 13.5657L10.2272 8.64335H11.4087C12.413 8.64335 13.2401 7.94015 13.3582 6.94395V6.88535V2.84198C13.4173 2.84198 13.4173 2.78338 13.4173 2.78338ZM9.282 7.99875L7.15527 12.7453C6.68266 12.5695 6.32821 12.1593 6.32821 11.6319V9.28794C6.32821 8.93634 6.0919 8.70194 5.73745 8.70194H2.37012H2.25197C1.95659 8.64334 1.72028 8.35035 1.77936 8.05735L2.60642 2.78338C2.6655 2.49038 2.9018 2.25598 3.19718 2.25598H9.282V7.99875ZM11.4678 7.52995C11.8223 7.52995 12.1767 7.23695 12.2358 6.88535V2.90057C12.1767 2.54898 11.8223 2.25598 11.4678 2.25598H10.4635V7.52995H11.4678Z"
+                      fill="white" />
+                  </mask>
+                  <g mask="url(#mask0_6158_17875)">
+                    <rect y="0.5" width="14" height="14" fill="#0093AD" />
+                  </g>
+                </svg>
+                <span>Dislike</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Information -->
+        <div class="hidden md:block absolute bg-white shadow-lg rounded-md right-0 top-12 max-w-xs md:max-w-md">
+          <div class="flex flex-col">
+            <!-- Image -->
+            <div class="flex w-full justify-center">
+              <img class="rounded-t-md bg-contain bg-no-repeat bg-center object-cover"
+                src="../images/assessment/bg-index.png">
+            </div>
+            <div class="flex flex-col">
+              <!-- Hosts -->
+              <div class="flex flex-col px-6 py-4">
+                <h1 class="mt-3 text-base-1 text-spacecadet-100">
+                  Hosts
+                </h1>
+                <div class="flex items-center w-full mt-2">
+                  <img src="../images/assessment/jane-doe.svg" class="w-20 h-20 border rounded-full">
+                  <div class="flex flex-col gap-y-1">
+                    <span class="text-base-1 text-spacecadet-100 ml-2 font-medium">Jane Doe</span>
+                    <span class="text-sm text-spacecadet-40 ml-2">Learner Expert, Innovator & Researcher</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Author -->
+              <div class="flex flex-col px-6 py-4">
+                <h1 class="mt-3 text-base-1 text-spacecadet-100">Expert</h1>
+                <div class="grid grid-cols-3 gap-2 mt-3">
+                  <div class="flex flex-col">
+                    <img src="../images/assessment/jane-doe.svg" class="w-20 h-20 border rounded-full mx-auto">
+                    <h3 class="mt-2 text-center text-base-1 text-spacecadet-100 break-words capitalize font-medium">
+                      Jane Doe
+                    </h3>
+                    <p class="mt-1 text-center text-spacecadet-40">
+                      Learner Expert
+                    </p>
+                  </div>
+                  <div class="flex flex-col">
+                    <img src="../images/assessment/jane-doe.svg" class="w-20 h-20 border rounded-full mx-auto">
+                    <h3 class="mt-2 text-center text-base-1 text-spacecadet-100 break-words capitalize font-medium">
+                      Jane Doe
+                    </h3>
+                    <p class="mt-1 text-center text-spacecadet-40">
+                      Learner Expert
+                    </p>
+                  </div>
+                  <div class="flex flex-col">
+                    <img src="../images/assessment/jane-doe.svg" class="w-20 h-20 border rounded-full mx-auto">
+                    <h3 class="mt-2 text-center text-base-1 text-spacecadet-100 break-words capitalize font-medium">
+                      Jane Doe
+                    </h3>
+                    <p class="mt-1 text-center text-spacecadet-40">
+                      Learner Expert
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="px-6 mb-6">
+                <button id="enroll" type="button" class="w-full py-3 rounded-md text-white bg-virindian-primary">
+                  Enroll
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-10 md:px-20 py-6">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 md:col-span-7 ">
+          <div class="flex flex-col space-y-4">
+            <!-- Description -->
+            <div class="flex flex-col">
+              <h1 class="text-base-1 text-celadon-100 font-medium">
+                Description
+              </h1>
+              <div class="mt-3 text-spacecadet-100">
+                Coach Hangout merupakan weekly sharing session rutin yang dilakukan setiap hari Jumat mengangkat tema
+                yang akan
+                menguatkan pemahaman dan kapabilitas dalam melakukan praktek coaching.
+              </div>
+            </div>
+
+            <hr>
+
+            <!-- User Registered -->
+            <div class="flex flex-col">
+              <h1 class="text-base-1 text-celadon-100 font-medium">
+                User Registered (20)
+              </h1>
+              <div class="grid grid-cols-3 md:grid-cols-5 gap-4 mt-3">
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center">
+                  <img src="../images/assessment/jane-doe.svg"
+                    class="w-20 h-20 border bg-gray-50 rounded-full object-cover object-top">
+                  <div class="flex flex-col space-y-2 text-center mt-2 w-full h-[60px]">
+                    <span
+                      class="text-base-1 text-spacecadet-100 font-medium uppercase text-ellipsis overflow-hidden">Jane
+                      Doe</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comment Section -->
+    <section class="px-10 md:px-20 py-6">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 md:col-span-7">
+          <div class="flex flex-col gap-4">
+            <!-- Count Heading -->
+            <h2 class="text-xs text-spacecadet-100 font-semibold uppercase">2 comment</h2>
+            <!-- Comment Input -->
+            <div class="flex gap-2 items-center shadow-[0px_4px_24px_rgba(0,0,0,0.06)] rounded-md bg-white p-3">
+              <img
+                src="https://mydigilearn-dev.s3.ap-southeast-3.amazonaws.com/content/user-upload/avatar/2022/9/2022930101752.jpeg"
+                class="w-11 h-11 border rounded-full">
+              <input placeholder="Write here..."
+                class="w-full border-none outline-none resize-none pl-4 text-celadon-primary rounded active:border-none">
+              <button type="button"
+                class="border-none bg-virindian-primary rounded-md ml-2 py-[10px] px-[25px] text-white disabled"
+                disabled=""> Post </button>
+            </div><!-- Comment List -->
+            <p class="text-spacecadet-100"></p>
+            <div>
+              <div class="bg-white shadow-md p-4 rounded-md">
+                <div class="flex gap-4 items-start">
+                  <!-- User Picture -->
+                  <img class="border rounded-full w-11 h-11"
+                    src="https://mydigilearn-dev.s3.ap-southeast-3.amazonaws.com/content/user-upload/avatar/2022/9/2022930101752.jpeg">
+                  <!-- User Information -->
+                  <div class="flex-col items-start flex">
+                    <div class="flex flex-col">
+                      <!-- Name and Delete Button -->
+                      <div class="flex items-center">
+                        <p class="text-[16px] text-celadon-100 font-semibold pt-[0.17rem]">Super Admin</p>
+                        <span class="ml-2 cursor-pointer">
+                          <!-- Icon Delete -->
+                          <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0.945312" y="0.5" width="16" height="16" rx="3" fill="white" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M14.946 3.83268H12.2793V3.16602C12.2793 2.03268 11.4126 1.16602 10.2793 1.16602H7.61263C6.4793 1.16602 5.61263 2.03268 5.61263 3.16602V3.83268H2.94596C2.54596 3.83268 2.2793 4.09935 2.2793 4.49935C2.2793 4.89935 2.54596 5.16602 2.94596 5.16602H3.61263V13.8327C3.61263 14.966 4.4793 15.8327 5.61263 15.8327H12.2793C13.4126 15.8327 14.2793 14.966 14.2793 13.8327V5.16602H14.946C15.346 5.16602 15.6126 4.89935 15.6126 4.49935C15.6126 4.09935 15.346 3.83268 14.946 3.83268ZM6.94596 3.16602C6.94596 2.76602 7.21263 2.49935 7.61263 2.49935H10.2793C10.6793 2.49935 10.946 2.76602 10.946 3.16602V3.83268H6.94596V3.16602ZM12.2793 14.4993C12.6793 14.4993 12.946 14.2327 12.946 13.8327V5.16602H4.94596V13.8327C4.94596 14.2327 5.21263 14.4993 5.61263 14.4993H12.2793ZM8.2793 7.83268V11.8327C8.2793 12.2327 8.01263 12.4993 7.61263 12.4993C7.21263 12.4993 6.94596 12.2327 6.94596 11.8327V7.83268C6.94596 7.43268 7.21263 7.16602 7.61263 7.16602C8.01263 7.16602 8.2793 7.43268 8.2793 7.83268ZM10.946 11.8327V7.83268C10.946 7.43268 10.6793 7.16602 10.2793 7.16602C9.8793 7.16602 9.61263 7.43268 9.61263 7.83268V11.8327C9.61263 12.2327 9.8793 12.4993 10.2793 12.4993C10.6793 12.4993 10.946 12.2327 10.946 11.8327Z"
+                              fill="black" />
+                            <mask id="mask0_5891_147427" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="1"
+                              width="14" height="15">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M14.946 3.83268H12.2793V3.16602C12.2793 2.03268 11.4126 1.16602 10.2793 1.16602H7.61263C6.4793 1.16602 5.61263 2.03268 5.61263 3.16602V3.83268H2.94596C2.54596 3.83268 2.2793 4.09935 2.2793 4.49935C2.2793 4.89935 2.54596 5.16602 2.94596 5.16602H3.61263V13.8327C3.61263 14.966 4.4793 15.8327 5.61263 15.8327H12.2793C13.4126 15.8327 14.2793 14.966 14.2793 13.8327V5.16602H14.946C15.346 5.16602 15.6126 4.89935 15.6126 4.49935C15.6126 4.09935 15.346 3.83268 14.946 3.83268ZM6.94596 3.16602C6.94596 2.76602 7.21263 2.49935 7.61263 2.49935H10.2793C10.6793 2.49935 10.946 2.76602 10.946 3.16602V3.83268H6.94596V3.16602ZM12.2793 14.4993C12.6793 14.4993 12.946 14.2327 12.946 13.8327V5.16602H4.94596V13.8327C4.94596 14.2327 5.21263 14.4993 5.61263 14.4993H12.2793ZM8.2793 7.83268V11.8327C8.2793 12.2327 8.01263 12.4993 7.61263 12.4993C7.21263 12.4993 6.94596 12.2327 6.94596 11.8327V7.83268C6.94596 7.43268 7.21263 7.16602 7.61263 7.16602C8.01263 7.16602 8.2793 7.43268 8.2793 7.83268ZM10.946 11.8327V7.83268C10.946 7.43268 10.6793 7.16602 10.2793 7.16602C9.8793 7.16602 9.61263 7.43268 9.61263 7.83268V11.8327C9.61263 12.2327 9.8793 12.4993 10.2793 12.4993C10.6793 12.4993 10.946 12.2327 10.946 11.8327Z"
+                                fill="white" />
+                            </mask>
+                            <g mask="url(#mask0_5891_147427)">
+                              <rect x="0.945312" y="0.5" width="16" height="16" fill="#457B9D" />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                      <!-- Date -->
+                      <p class="text-xs text-spacecadet-primary mt-1">October 07, 2022</p>
+                    </div>
+                    <!-- Comment -->
+                    <p class="py-6 font-light text-spacecadet-100">test lagi</p>
+                    <!-- Reply -->
+                    <div class=""><span class="cursor-pointer rounded-md text-virindian-primary">Hide 1 Replies </span>
+                      <div class="transition-all duration-300 max-h-screen visible py-4">
+                        <div class="flex gap-4 items-start"><img class="border rounded-full w-11 h-11"
+                            src="https://mydigilearn-dev.s3.ap-southeast-3.amazonaws.com/content/user-upload/avatar/2022/9/2022930101752.jpeg">
+                          <div class="flex flex-col">
+                            <div class="flex items-center">
+                              <p class="text-[16px] text-celadon-100 font-semibold pt-[0.17rem]">
+                                Super Admin
+                              </p>
+                              <span class="ml-2 cursor-pointer">
+                                <!-- Icon Delete -->
+                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <rect x="0.945312" y="0.5" width="16" height="16" rx="3" fill="white" />
+                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M14.946 3.83268H12.2793V3.16602C12.2793 2.03268 11.4126 1.16602 10.2793 1.16602H7.61263C6.4793 1.16602 5.61263 2.03268 5.61263 3.16602V3.83268H2.94596C2.54596 3.83268 2.2793 4.09935 2.2793 4.49935C2.2793 4.89935 2.54596 5.16602 2.94596 5.16602H3.61263V13.8327C3.61263 14.966 4.4793 15.8327 5.61263 15.8327H12.2793C13.4126 15.8327 14.2793 14.966 14.2793 13.8327V5.16602H14.946C15.346 5.16602 15.6126 4.89935 15.6126 4.49935C15.6126 4.09935 15.346 3.83268 14.946 3.83268ZM6.94596 3.16602C6.94596 2.76602 7.21263 2.49935 7.61263 2.49935H10.2793C10.6793 2.49935 10.946 2.76602 10.946 3.16602V3.83268H6.94596V3.16602ZM12.2793 14.4993C12.6793 14.4993 12.946 14.2327 12.946 13.8327V5.16602H4.94596V13.8327C4.94596 14.2327 5.21263 14.4993 5.61263 14.4993H12.2793ZM8.2793 7.83268V11.8327C8.2793 12.2327 8.01263 12.4993 7.61263 12.4993C7.21263 12.4993 6.94596 12.2327 6.94596 11.8327V7.83268C6.94596 7.43268 7.21263 7.16602 7.61263 7.16602C8.01263 7.16602 8.2793 7.43268 8.2793 7.83268ZM10.946 11.8327V7.83268C10.946 7.43268 10.6793 7.16602 10.2793 7.16602C9.8793 7.16602 9.61263 7.43268 9.61263 7.83268V11.8327C9.61263 12.2327 9.8793 12.4993 10.2793 12.4993C10.6793 12.4993 10.946 12.2327 10.946 11.8327Z"
+                                    fill="black" />
+                                  <mask id="mask0_5891_147427" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2"
+                                    y="1" width="14" height="15">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M14.946 3.83268H12.2793V3.16602C12.2793 2.03268 11.4126 1.16602 10.2793 1.16602H7.61263C6.4793 1.16602 5.61263 2.03268 5.61263 3.16602V3.83268H2.94596C2.54596 3.83268 2.2793 4.09935 2.2793 4.49935C2.2793 4.89935 2.54596 5.16602 2.94596 5.16602H3.61263V13.8327C3.61263 14.966 4.4793 15.8327 5.61263 15.8327H12.2793C13.4126 15.8327 14.2793 14.966 14.2793 13.8327V5.16602H14.946C15.346 5.16602 15.6126 4.89935 15.6126 4.49935C15.6126 4.09935 15.346 3.83268 14.946 3.83268ZM6.94596 3.16602C6.94596 2.76602 7.21263 2.49935 7.61263 2.49935H10.2793C10.6793 2.49935 10.946 2.76602 10.946 3.16602V3.83268H6.94596V3.16602ZM12.2793 14.4993C12.6793 14.4993 12.946 14.2327 12.946 13.8327V5.16602H4.94596V13.8327C4.94596 14.2327 5.21263 14.4993 5.61263 14.4993H12.2793ZM8.2793 7.83268V11.8327C8.2793 12.2327 8.01263 12.4993 7.61263 12.4993C7.21263 12.4993 6.94596 12.2327 6.94596 11.8327V7.83268C6.94596 7.43268 7.21263 7.16602 7.61263 7.16602C8.01263 7.16602 8.2793 7.43268 8.2793 7.83268ZM10.946 11.8327V7.83268C10.946 7.43268 10.6793 7.16602 10.2793 7.16602C9.8793 7.16602 9.61263 7.43268 9.61263 7.83268V11.8327C9.61263 12.2327 9.8793 12.4993 10.2793 12.4993C10.6793 12.4993 10.946 12.2327 10.946 11.8327Z"
+                                      fill="white" />
+                                  </mask>
+                                  <g mask="url(#mask0_5891_147427)">
+                                    <rect x="0.945312" y="0.5" width="16" height="16" fill="#457B9D" />
+                                  </g>
+                                </svg>
+                              </span>
+                            </div>
+                            <p class="text-xs text-spacecadet-primary mt-2">October 07, 2022</p>
+                            <p class="py-6 font-light text-spacecadet-100">numpang lewat gan</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex mt-2 px-2 py-3 items-center gap-2 cursor-pointer rounded-md active:shadow prevent-class">
+                      <!-- Reply Icon -->
+                      <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M21.6196 9.75V15C21.6196 15.45 21.2254 15.75 20.634 15.75C20.0426 15.75 19.6483 15.45 19.6483 15V9.75C19.6483 8.475 18.367 7.5 16.6913 7.5H7.22896L10.4816 9.975C10.8759 10.275 10.8759 10.725 10.4816 11.025C10.2845 11.175 10.0874 11.25 9.79168 11.25C9.49598 11.25 9.29885 11.175 9.10172 11.025L4.1734 7.275C4.07483 7.2 3.97627 7.125 3.97627 7.05C3.8777 6.825 3.8777 6.675 3.97627 6.45C4.07483 6.375 4.07483 6.3 4.1734 6.225L9.10172 2.475C9.49598 2.175 10.0874 2.175 10.4816 2.475C10.8759 2.775 10.8759 3.225 10.4816 3.525L7.22896 6H16.6913C19.4512 6 21.6196 7.65 21.6196 9.75Z"
+                          fill="black" />
+                        <mask id="mask0_5891_147431" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="3" y="2"
+                          width="19" height="14">
+                          <path
+                            d="M21.6196 9.75V15C21.6196 15.45 21.2254 15.75 20.634 15.75C20.0426 15.75 19.6483 15.45 19.6483 15V9.75C19.6483 8.475 18.367 7.5 16.6913 7.5H7.22896L10.4816 9.975C10.8759 10.275 10.8759 10.725 10.4816 11.025C10.2845 11.175 10.0874 11.25 9.79168 11.25C9.49598 11.25 9.29885 11.175 9.10172 11.025L4.1734 7.275C4.07483 7.2 3.97627 7.125 3.97627 7.05C3.8777 6.825 3.8777 6.675 3.97627 6.45C4.07483 6.375 4.07483 6.3 4.1734 6.225L9.10172 2.475C9.49598 2.175 10.0874 2.175 10.4816 2.475C10.8759 2.775 10.8759 3.225 10.4816 3.525L7.22896 6H16.6913C19.4512 6 21.6196 7.65 21.6196 9.75Z"
+                            fill="white" />
+                        </mask>
+                        <g mask="url(#mask0_5891_147431)">
+                          <rect x="0.945312" width="23.6559" height="18" fill="#0093AD" />
+                        </g>
+                      </svg>
+                      <p class="text-sm pt-1 text-virindian-primary prevent-class"> Reply </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="bg-white shadow-md p-4 rounded-md">
+                <div class="flex gap-4 items-start">
+                  <img class="border rounded-full w-11 h-11"
+                    src="https://mydigilearn-dev.s3.ap-southeast-3.amazonaws.com/content/user-upload/avatar/2022/9/2022930101752.jpeg">
+                  <div class="flex-col items-start flex">
+                    <div class="flex flex-col">
+                      <div class="flex items-center">
+                        <p class="text-[16px] text-celadon-100 font-semibold pt-[0.17rem]">Super Admin</p>
+                        <span class="ml-2 cursor-pointer">
+                          <!-- Icon Delete -->
+                          <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0.945312" y="0.5" width="16" height="16" rx="3" fill="white" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M14.946 3.83268H12.2793V3.16602C12.2793 2.03268 11.4126 1.16602 10.2793 1.16602H7.61263C6.4793 1.16602 5.61263 2.03268 5.61263 3.16602V3.83268H2.94596C2.54596 3.83268 2.2793 4.09935 2.2793 4.49935C2.2793 4.89935 2.54596 5.16602 2.94596 5.16602H3.61263V13.8327C3.61263 14.966 4.4793 15.8327 5.61263 15.8327H12.2793C13.4126 15.8327 14.2793 14.966 14.2793 13.8327V5.16602H14.946C15.346 5.16602 15.6126 4.89935 15.6126 4.49935C15.6126 4.09935 15.346 3.83268 14.946 3.83268ZM6.94596 3.16602C6.94596 2.76602 7.21263 2.49935 7.61263 2.49935H10.2793C10.6793 2.49935 10.946 2.76602 10.946 3.16602V3.83268H6.94596V3.16602ZM12.2793 14.4993C12.6793 14.4993 12.946 14.2327 12.946 13.8327V5.16602H4.94596V13.8327C4.94596 14.2327 5.21263 14.4993 5.61263 14.4993H12.2793ZM8.2793 7.83268V11.8327C8.2793 12.2327 8.01263 12.4993 7.61263 12.4993C7.21263 12.4993 6.94596 12.2327 6.94596 11.8327V7.83268C6.94596 7.43268 7.21263 7.16602 7.61263 7.16602C8.01263 7.16602 8.2793 7.43268 8.2793 7.83268ZM10.946 11.8327V7.83268C10.946 7.43268 10.6793 7.16602 10.2793 7.16602C9.8793 7.16602 9.61263 7.43268 9.61263 7.83268V11.8327C9.61263 12.2327 9.8793 12.4993 10.2793 12.4993C10.6793 12.4993 10.946 12.2327 10.946 11.8327Z"
+                              fill="black" />
+                            <mask id="mask0_5891_147427" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="1"
+                              width="14" height="15">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M14.946 3.83268H12.2793V3.16602C12.2793 2.03268 11.4126 1.16602 10.2793 1.16602H7.61263C6.4793 1.16602 5.61263 2.03268 5.61263 3.16602V3.83268H2.94596C2.54596 3.83268 2.2793 4.09935 2.2793 4.49935C2.2793 4.89935 2.54596 5.16602 2.94596 5.16602H3.61263V13.8327C3.61263 14.966 4.4793 15.8327 5.61263 15.8327H12.2793C13.4126 15.8327 14.2793 14.966 14.2793 13.8327V5.16602H14.946C15.346 5.16602 15.6126 4.89935 15.6126 4.49935C15.6126 4.09935 15.346 3.83268 14.946 3.83268ZM6.94596 3.16602C6.94596 2.76602 7.21263 2.49935 7.61263 2.49935H10.2793C10.6793 2.49935 10.946 2.76602 10.946 3.16602V3.83268H6.94596V3.16602ZM12.2793 14.4993C12.6793 14.4993 12.946 14.2327 12.946 13.8327V5.16602H4.94596V13.8327C4.94596 14.2327 5.21263 14.4993 5.61263 14.4993H12.2793ZM8.2793 7.83268V11.8327C8.2793 12.2327 8.01263 12.4993 7.61263 12.4993C7.21263 12.4993 6.94596 12.2327 6.94596 11.8327V7.83268C6.94596 7.43268 7.21263 7.16602 7.61263 7.16602C8.01263 7.16602 8.2793 7.43268 8.2793 7.83268ZM10.946 11.8327V7.83268C10.946 7.43268 10.6793 7.16602 10.2793 7.16602C9.8793 7.16602 9.61263 7.43268 9.61263 7.83268V11.8327C9.61263 12.2327 9.8793 12.4993 10.2793 12.4993C10.6793 12.4993 10.946 12.2327 10.946 11.8327Z"
+                                fill="white" />
+                            </mask>
+                            <g mask="url(#mask0_5891_147427)">
+                              <rect x="0.945312" y="0.5" width="16" height="16" fill="#457B9D" />
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                      <p class="text-xs text-spacecadet-primary mt-1">October 04, 2022</p>
+                    </div>
+                    <p class="py-6 font-light text-spacecadet-100">test mas</p>
+
+                    <div
+                      class="flex mt-2 px-2 py-3 items-center gap-2 cursor-pointer rounded-md active:shadow prevent-class">
+                      <!-- Reply Icon -->
+                      <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M21.6196 9.75V15C21.6196 15.45 21.2254 15.75 20.634 15.75C20.0426 15.75 19.6483 15.45 19.6483 15V9.75C19.6483 8.475 18.367 7.5 16.6913 7.5H7.22896L10.4816 9.975C10.8759 10.275 10.8759 10.725 10.4816 11.025C10.2845 11.175 10.0874 11.25 9.79168 11.25C9.49598 11.25 9.29885 11.175 9.10172 11.025L4.1734 7.275C4.07483 7.2 3.97627 7.125 3.97627 7.05C3.8777 6.825 3.8777 6.675 3.97627 6.45C4.07483 6.375 4.07483 6.3 4.1734 6.225L9.10172 2.475C9.49598 2.175 10.0874 2.175 10.4816 2.475C10.8759 2.775 10.8759 3.225 10.4816 3.525L7.22896 6H16.6913C19.4512 6 21.6196 7.65 21.6196 9.75Z"
+                          fill="black" />
+                        <mask id="mask0_5891_147431" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="3" y="2"
+                          width="19" height="14">
+                          <path
+                            d="M21.6196 9.75V15C21.6196 15.45 21.2254 15.75 20.634 15.75C20.0426 15.75 19.6483 15.45 19.6483 15V9.75C19.6483 8.475 18.367 7.5 16.6913 7.5H7.22896L10.4816 9.975C10.8759 10.275 10.8759 10.725 10.4816 11.025C10.2845 11.175 10.0874 11.25 9.79168 11.25C9.49598 11.25 9.29885 11.175 9.10172 11.025L4.1734 7.275C4.07483 7.2 3.97627 7.125 3.97627 7.05C3.8777 6.825 3.8777 6.675 3.97627 6.45C4.07483 6.375 4.07483 6.3 4.1734 6.225L9.10172 2.475C9.49598 2.175 10.0874 2.175 10.4816 2.475C10.8759 2.775 10.8759 3.225 10.4816 3.525L7.22896 6H16.6913C19.4512 6 21.6196 7.65 21.6196 9.75Z"
+                            fill="white" />
+                        </mask>
+                        <g mask="url(#mask0_5891_147431)">
+                          <rect x="0.945312" width="23.6559" height="18" fill="#0093AD" />
+                        </g>
+                      </svg>
+                      <p class="text-sm pt-1 text-virindian-primary prevent-class"> Reply </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+  $(function () {
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontSize: {
+            xs: "12px",
+            sm: "14px",
+            base: ["16px", "21.82px"],
+            "base-1": "18px",
+            "base-2": "20px",
+            lg: "2rem",
+            "lg-2": "24px",
+            "2lg": "1.5rem",
+            xl: ["50px", "48px"],
+            "1xl": "1.5rem",
+            "2xl": "4rem",
+            "3xl": "1.875rem",
+            "4xl": "2.25rem",
+            "5xl": "3rem",
+            "6xl": "4rem",
+            "7xl": "5rem"
+          },
+          boxShadow: {
+            navbar: '1px 3px 10px 1px #e8e8e896;',
+            global: '0px 4px 24px rgba(0, 0, 0, 0.06)'
+          },
+          colors: {
+            powerblue: {
+              primary: "#DCF0F1",
+              60: "#CBE9E9",
+              100: "#A8DADB"
+            },
+            virindian: {
+              primary: "#0093AD",
+              20: "#CCE9EF",
+              60: "#67BECF"
+            },
+            celadon: {
+              primary: "#8FAFC4",
+              40: "#B4CAD8",
+              100: "#457B9D"
+            },
+            cutured: {
+              primary: "#EFEFEF"
+            },
+            spacecadet: {
+              primary: "#A6A9BC",
+              20: "#D1D4DD",
+              40: "#A6A9BC",
+              60: "#797F99",
+              80: "#4D5377",
+              100: "#1F2855"
+            },
+            rossocorsa: {
+              primary: "#D2000F",
+              100: "#f9dbdb"
+            },
+            charcoal: {
+              primary: "#2B2B2B"
+            },
+            antique: {
+              primary: "#FD7E14",
+              100: "#F7E3CE"
+            },
+            vermillion: {
+              20: "#F9DBDB",
+              60: "#EA9291",
+              100: "#DA4A4A"
+            }
+          },
+        },
+        plugins: [],
+      }
+    }
+  })
+</script>
+<script>
+  $(function () {
+    const enrollBtn = $("#enroll")
+    
+    enrollBtn.click(() => {
+      if(enrollBtn.text() === 'Continue Assessment'){
+        window.location.href = "detail.html"
+        return
+      }
+      enrollBtn.text('Continue Assessment')
+    })
+  })
+
+</script>
+
+</html>
