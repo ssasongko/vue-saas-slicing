@@ -95,7 +95,7 @@
                   <rect width="24" height="24" fill="#1F2855" />
                 </g>
               </svg>
-              <p class="text-spacecadet-100">Assessment Details</p>
+              <a class="text-spacecadet-100" href="index.html">Assessment Details</a>
             </div>
             <hr />
             <div class="p-5 flex flex-col gap-y-6">
@@ -162,8 +162,7 @@
                   </div>
                 </div>
                 <div
-                  class="w-full flex flex-col items-center justify-center gap-y-2 bg-powerblue-primary px-1 py-4 rounded-md"
-                  :class="{ 'border-2 border-dashed border-virindian-60': stats === 'certificate' || stats === 'retake' }">
+                  class="w-full flex flex-col items-center justify-center gap-y-2 bg-powerblue-primary px-1 py-4 rounded-md">
                   <p class="text-virindian-60 text-center">Re-take</p>
                   <div class="flex flex-col items-center text-spacecadet-100">
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -205,13 +204,13 @@
             <div class="flex justify-between items-center">
               <p class="text-spacecadet-100 font-bold">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
               <button class="text-white bg-virindian-primary px-5 py-3 rounded-md">
-                <a href="start.html">
+                <a href="finish.html">
                   Submit Assessment
                 </a>
               </button>
             </div>
           </div>
-          <div v-if="stats === 'submit'" class="flex flex-col gap-y-5">
+          <div class="flex flex-col gap-y-5">
             <div class="flex justify-between items-center">
               <span class="text-celadon-100">Showing 1 to 10 of 13 entries</span>
               <div class="flex gap-x-3">
